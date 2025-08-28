@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konstantinos Koutsomitopoulos</title>
+    <!-- Tailwind CSS für das Styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --background: #000000;
+            --text: #e0e0e0;
+            --accent: #111111; /* solider Schwarzton */
+            --link: #1a73e8;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            font-family: 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: var(--accent);
+            padding: 1rem 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding: 0;
+            margin: 0;
+        }
+
+        .navbar a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: var(--link);
+        }
+
+        .section {
+            padding: 4rem 2rem;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        h1, h2 {
+            color: var(--text);
+            margin-bottom: 1rem;
+        }
+
+        .h2-accent {
+            color: var(--link);
+        }
+
+        ul {
+            list-style: square;
+            padding-left: 1.5rem;
+        }
+
+        a {
+            color: var(--link);
+            text-decoration: underline;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+            color: #777;
+        }
+    </style>
+</head>
+<body class="bg-black text-gray-200">
+
+    <!-- Navigationsleiste -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="#about">Über mich</a></li>
+            <li><a href="#projects">Projekte</a></li>
+            <li><a href="#contact">Kontakt</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- Über mich Abschnitt -->
+        <section id="about" class="section text-center">
+            <div class="max-w-4xl mx-auto">
+                <h1 class="text-4xl md:text-5xl font-extrabold text-gray-100">Konstantinos Koutsomitopoulos</h1>
+                <p class="mt-4 text-lg md:text-xl">
+                    Ich bin Projektmanager und Transformationsberater mit einem Hintergrund in Wirtschaftswissenschaften und operativer Expertise in der Automobil- und Intralogistikbranche.
+                </p>
+                <p class="mt-4 text-lg md:text-xl">
+                    Mein Ansatz ist analytisch, strukturiert und lösungsorientiert. Ich bringe unterschiedliche Perspektiven zusammen, um konkrete Ergebnisse zu erzielen – eine klare Positionierung nach außen, sinnvolle Strukturen nach innen und Abläufe, die im Alltag wirklich helfen.
+                </p>
+                <p class="mt-4 text-lg md:text-xl">
+                    Was mich antreibt, ist die Herausforderung, Klarheit in komplexe Sachverhalte zu bringen.
+                </p>
+            </div>
+        </section>
+
+        <!-- Projekte Abschnitt -->
+        <section id="projects" class="section">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-extrabold h2-accent">Ausgewählte Projekte</h2>
+                <p class="mt-4 text-lg md:text-xl">
+                    In meinen Projekten unterstütze ich wachsende Unternehmen bei der Strukturierung interner Abläufe und bei der Entwicklung einer klaren Positionierung nach außen.
+                </p>
+                <ul class="mt-8 space-y-4 text-lg">
+                    <li>
+                        <strong>Supply Chain Stabilization</strong> – Managed on-site escalation and ramp-up activities for a critical supplier of a German automotive OEM, ensuring uninterrupted prototype and series delivery.
+                    </li>
+                    <li>
+                        <strong>Complexity & Variant Management</strong> – Led modularization and cost-reduction strategies across brands and platforms for an international intralogistics OEM.
+                    </li>
+                    <li>
+                        <strong>Post-Acquisition Integration</strong> – Supported pre- and post-acquisition planning for a UK automotive OEM, including workforce risk analysis and retention strategies.
+                    </li>
+                    <li>
+                        <strong>Cost Transparency & Optimization</strong> – Implemented cross-plant reporting and KPIs to improve supply chain visibility.
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Kontakt Abschnitt -->
+        <section id="contact" class="section text-center">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-extrabold h2-accent">Lass uns in Kontakt treten</h2>
+                <p class="mt-4 text-lg md:text-xl max-w-2xl mx-auto">
+                    Die Zusammenarbeit war von Anfang an unkompliziert, klar in der Kommunikation und strukturiert im Vorgehen. Er übernimmt Verantwortung und liefert zuverlässig.
+                </p>
+                <div class="mt-8 space-y-4">
+                    <a href="mailto:your.email@example.com" class="text-2xl font-semibold hover:underline">Schreib mir eine E-Mail</a>
+                    <br>
+                    <a href="https://linkedin.com/in/konstantinos-koutsomitopoulos" target="_blank" class="text-2xl font-semibold hover:underline">LinkedIn</a>
+                    <br>
+                    <a href="https://github.com/CptKouts" target="_blank" class="text-2xl font-semibold hover:underline">GitHub</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Einfacher Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Konstantinos Koutsomitopoulos. Alle Rechte vorbehalten.</p>
+    </footer>
+</body>
+</html>
