@@ -23,6 +23,7 @@
             line-height: 1.6;
             margin: 0;
             padding: 0;
+            text-align: justify; /* Added for justified text */
         }
 
         .h2-accent {
@@ -32,6 +33,7 @@
         ul {
             list-style: square;
             padding-left: 1.5rem;
+            text-align: left; /* Keep lists left-aligned for better readability */
         }
 
         a {
@@ -44,6 +46,45 @@
             padding: 2rem;
             font-size: 0.9rem;
             color: #777;
+        }
+        
+        /* Improved mobile menu animation */
+        #mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        #mobile-menu.open {
+            max-height: 500px;
+            transition: max-height 0.5s ease-in;
+        }
+        
+        /* Improved text justification for better readability */
+        p, blockquote, li {
+            text-align: justify;
+            hyphens: auto;
+            -webkit-hyphens: auto;
+            -ms-hyphens: auto;
+        }
+        
+        /* Better spacing for mobile */
+        @media (max-width: 768px) {
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            section {
+                padding-top: 2rem !important;
+                padding-bottom: 2rem !important;
+            }
+            
+            /* Improved image sizing on mobile */
+            .profile-img {
+                width: 200px;
+                height: 200px;
+            }
         }
     </style>
 </head>
@@ -62,17 +103,26 @@
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
             </button>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden bg-gray-800 px-6 pb-4">
-            <a href="#about" class="block py-2 text-gray-50 hover:text-blue-500 transition duration-300 border-b border-gray-700">About Me</a>
-            <a href="#projects" class="block py-2 text-gray-50 hover:text-blue-500 transition duration-300 border-b border-gray-700">Projects</a>
-            <a href="#contact" class="block py-2 text-gray-50 hover:text-blue-500 transition duration-300">Contact</a>
+        <div id="mobile-menu" class="md:hidden bg-gray-800 px-6">
+            <a href="#about" class="block py-3 text-gray-50 hover:text-blue-500 transition duration-300 border-b border-gray-700">About Me</a>
+            <a href="#projects" class="block py-3 text-gray-50 hover:text-blue-500 transition duration-300 border-b border-gray-700">Projects</a>
+            <a href="#contact" class="block py-3 text-gray-50 hover:text-blue-500 transition duration-300">Contact</a>
         </div>
     </nav>
     <script>
-        document.getElementById('mobile-menu-button').onclick = function() {
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
             var menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('open');
             menu.classList.toggle('hidden');
-        };
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('#mobile-menu a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                document.getElementById('mobile-menu').classList.remove('open');
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
     </script>
 
     <main class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -93,8 +143,8 @@
                     What drives me is the challenge of bringing clarity to complex matters.
                 </p>
             </div>
-            <div class="flex-shrink-0 mb-8 md:mb-0 md:order-2">
-                <img src="https://github.com/CptKouts/CptKouts.github.io/blob/main/20210601_EFS_669.jpg?raw=true" alt="Konstantinos Koutsomitopoulos Profile Picture" class="w-48 h-48 md:w-64 md:h-64 object-cover border-4 border-white">
+            <div class="flex-shrink-0 mb-8 md:mb-0">
+                <img src="https://github.com/CptKouts/CptKouts.github.io/blob/main/20210601_EFS_669.jpg?raw=true" alt="Konstantinos Koutsomitopoulos Profile Picture" class="profile-img w-48 h-48 md:w-64 md:h-64 object-cover border-4 border-white mx-auto md:mx-0">
             </div>
         </section>
 
