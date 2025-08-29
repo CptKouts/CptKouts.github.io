@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,6 +24,16 @@
             padding: 0;
         }
 
+        /* Force left alignment for all text elements */
+        body, p, h1, h2, h3, h4, h5, h6, ul, ol, li, blockquote, div {
+            text-align: left !important;
+        }
+        
+        /* Ensure containers don't override text alignment */
+        .container, section, div {
+            text-align: left !important;
+        }
+
         .h2-accent {
             color: var(--link);
         }
@@ -45,7 +55,7 @@
             color: #777;
         }
         
-        /* Improved mobile menu animation */
+        /* Mobile menu styling */
         #mobile-menu {
             max-height: 0;
             overflow: hidden;
@@ -57,30 +67,18 @@
             transition: max-height 0.5s ease-in;
         }
         
-        /* Left alignment for all text elements */
-        p, blockquote, li, h1, h2, h3 {
-            text-align: left;
-        }
-        
-        /* Better spacing for mobile */
+        /* Responsive adjustments */
         @media (max-width: 768px) {
-            .container {
+            .mobile-padding {
                 padding-left: 1rem;
                 padding-right: 1rem;
             }
             
-            section {
-                padding-top: 2rem !important;
-                padding-bottom: 2rem !important;
-            }
-            
-            /* Improved image sizing on mobile */
             .profile-img {
                 width: 200px;
                 height: 200px;
             }
             
-            /* Better text sizing on mobile */
             .mobile-text {
                 font-size: 1.1rem;
                 line-height: 1.7;
@@ -109,23 +107,8 @@
             <a href="#contact" class="block py-3 text-gray-50 hover:text-blue-500 transition duration-300">Contact</a>
         </div>
     </nav>
-    <script>
-        document.getElementById('mobile-menu-button').addEventListener('click', function() {
-            var menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('open');
-            menu.classList.toggle('hidden');
-        });
-        
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('#mobile-menu a').forEach(function(link) {
-            link.addEventListener('click', function() {
-                document.getElementById('mobile-menu').classList.remove('open');
-                document.getElementById('mobile-menu').classList.add('hidden');
-            });
-        });
-    </script>
 
-    <main class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 mobile-padding">
         <!-- Main Header with motto and About Me Section -->
         <section id="about" class="py-12 md:py-24 flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12">
             <div class="flex-grow">
@@ -203,5 +186,36 @@
     <footer class="footer">
         <p>&copy; 2024 Konstantinos Koutsomitopoulos. All rights reserved.</p>
     </footer>
+
+    <script>
+        // Mobile menu functionality
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            var menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('open');
+            
+            // Toggle hidden class for Tailwind compatibility
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+            } else {
+                // Add a small delay before adding hidden class to allow transition
+                setTimeout(function() {
+                    if (!menu.classList.contains('open')) {
+                        menu.classList.add('hidden');
+                    }
+                }, 500);
+            }
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('#mobile-menu a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                var menu = document.getElementById('mobile-menu');
+                menu.classList.remove('open');
+                setTimeout(function() {
+                    menu.classList.add('hidden');
+                }, 300);
+            });
+        });
+    </script>
 </body>
 </html>
