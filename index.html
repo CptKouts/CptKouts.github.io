@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Konstantinos Koutsomitopoulos</title>
-    <!-- Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap');
@@ -12,7 +11,7 @@
         :root {
             --background: #000000;
             --text: #e0e0e0;
-            --accent: #1a73e8; /* dark blue */
+            --accent: #1a73e8;
             --link: #1a73e8;
         }
 
@@ -23,7 +22,6 @@
             line-height: 1.6;
             margin: 0;
             padding: 0;
-            text-align: justify; /* Added for justified text */
         }
 
         .h2-accent {
@@ -33,7 +31,6 @@
         ul {
             list-style: square;
             padding-left: 1.5rem;
-            text-align: left; /* Keep lists left-aligned for better readability */
         }
 
         a {
@@ -60,12 +57,9 @@
             transition: max-height 0.5s ease-in;
         }
         
-        /* Improved text justification for better readability */
-        p, blockquote, li {
-            text-align: justify;
-            hyphens: auto;
-            -webkit-hyphens: auto;
-            -ms-hyphens: auto;
+        /* Left alignment for all text elements */
+        p, blockquote, li, h1, h2, h3 {
+            text-align: left;
         }
         
         /* Better spacing for mobile */
@@ -84,6 +78,12 @@
             .profile-img {
                 width: 200px;
                 height: 200px;
+            }
+            
+            /* Better text sizing on mobile */
+            .mobile-text {
+                font-size: 1.1rem;
+                line-height: 1.7;
             }
         }
     </style>
@@ -133,13 +133,13 @@
                 <h2 class="text-2xl md:text-3xl font-extrabold text-white mb-2">Improve. Reduce. Build.</h2>
                 <!-- About Me heading with larger font size -->
                 <h1 class="text-4xl md:text-5xl font-extrabold text-gray-100 mb-4">About Me</h1>
-                <p class="mt-4 text-lg md:text-xl">
+                <p class="mt-4 text-lg md:text-xl mobile-text">
                     I am a project manager and transformation consultant with a background in economics and operational expertise in the automotive and intralogistics industries.
                 </p>
-                <p class="mt-4 text-lg md:text-xl">
+                <p class="mt-4 text-lg md:text-xl mobile-text">
                     My approach is analytical, structured, and solution-oriented. I bring different perspectives together to achieve concrete results—a clear external positioning, meaningful internal structures, and processes that truly help in daily operations.
                 </p>
-                <p class="mt-4 text-lg md:text-xl">
+                <p class="mt-4 text-lg md:text-xl mobile-text">
                     What drives me is the challenge of bringing clarity to complex matters.
                 </p>
             </div>
@@ -163,10 +163,10 @@
         <section id="projects" class="py-12 md:py-24">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 class="text-3xl md:text-4xl font-extrabold h2-accent">Selected Projects</h2>
-                <p class="mt-4 text-lg md:text-xl">
+                <p class="mt-4 text-lg md:text-xl mobile-text">
                     In my projects, I support growing companies in structuring internal processes and developing a clear external positioning.
                 </p>
-                <ul class="mt-8 space-y-4 text-lg">
+                <ul class="mt-8 space-y-4 text-lg mobile-text">
                     <li>
                         <strong>Supply Chain Stabilization</strong> – Managed on-site escalation and ramp-up activities for a critical supplier of a German automotive OEM, ensuring uninterrupted prototype and series delivery.
                     </li>
@@ -187,7 +187,7 @@
         <section id="contact" class="py-12 md:py-24">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 class="text-3xl md:text-4xl font-extrabold h2-accent">Let's Connect</h2>
-                <p class="mt-4 text-lg md:text-xl max-w-2xl mx-auto">
+                <p class="mt-4 text-lg md:text-xl mobile-text max-w-2xl">
                     The collaboration was uncomplicated from the start, with clear communication and a structured approach. He takes responsibility and delivers reliably.
                 </p>
                 <div class="mt-8 space-y-4">
