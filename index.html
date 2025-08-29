@@ -1,164 +1,173 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Konstantinos Koutsomitopoulos — Independent Consultant</title>
-  <meta name="description" content="Independent consultant helping European organisations stabilise operations, reduce complexity, and build structures that last. Vienna-based. DE / EN / EL."/>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Font Exo 2 -->
-  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --background: #0a0a0a;
-      --text: #e6e6e6;
-      --accent: #111111;
-      --link: #60a5fa;
-    }
-    body{
-      background:var(--background);
-      color:var(--text);
-      font-family: 'Exo 2', ui-sans-serif, system-ui;
-      font-size: 1.125rem; /* increased base font size */
-      line-height: 1.7;
-    }
-    .container{max-width:1100px}
-    a{color:var(--link)}
-    h1{white-space:nowrap;}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konstantinos Koutsomitopoulos</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --background: #000000;
+            --text: #e0e0e0;
+            --accent: #111111; /* solid black */
+            --link: #1a73e8;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            font-family: 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: var(--accent);
+            padding: 1rem 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding: 0;
+            margin: 0;
+        }
+
+        .navbar a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: var(--link);
+        }
+
+        .h2-accent {
+            color: var(--link);
+        }
+
+        ul {
+            list-style: square;
+            padding-left: 1.5rem;
+        }
+
+        a {
+            color: var(--link);
+            text-decoration: underline;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+            color: #777;
+        }
+    </style>
 </head>
-<body class="antialiased">
-  <!-- Skip link for accessibility -->
-  <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-white/10 px-3 py-1 rounded">Skip to content</a>
+<body class="bg-black text-gray-200">
 
-  <!-- Header / Nav -->
-  <header class="sticky top-0 z-50 backdrop-blur bg-black/60 border-b border-white/10">
-    <div class="container mx-auto px-4 py-3 flex items-center justify-between">
-      <a href="#home" class="text-xl md:text-3xl font-extrabold tracking-wide leading-none">Konstantinos Koutsomitopoulos</a>
-      <nav aria-label="Main" class="text-base">
-        <ul class="flex gap-5 md:gap-8">
-          <li><a href="#about" class="hover:underline">About</a></li>
-          <li><a href="#contexts" class="hover:underline">Contexts</a></li>
-          <li><a href="#projects" class="hover:underline">Projects</a></li>
-          <li><a href="#approach" class="hover:underline">Approach</a></li>
-          <li><a href="#blog" class="hover:underline">Blog</a></li>
-          <li><a href="#contact" class="hover:underline">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <main id="main">
-    <!-- Hero -->
-    <section id="home" class="container mx-auto px-4 pt-16 pb-10 md:pt-24 md:pb-16">
-      <div class="grid md:grid-cols-[1.2fr,1fr] gap-8 items-center">
-        <div>
-          <h1 class="text-5xl md:text-7xl font-extrabold leading-tight">Stabilise. Reduce. Build.</h1>
-          <p class="mt-4 text-xl md:text-2xl text-gray-300">Helping European organisations simplify complexity and keep operations reliable.</p>
-          <div class="mt-6 flex flex-wrap gap-3">
-            <a href="https://calendar.app.google/RpUJq5FqTQUNFNHh6" target="_blank" class="inline-flex items-center justify-center rounded-xl bg-white text-black px-6 py-3 font-bold text-lg hover:bg-gray-200">Discuss your current bottleneck</a>
-          </div>
-          <p class="mt-3 text-base text-gray-400">Based in Vienna · Projects across Europe · Languages: DE / EN / EL</p>
+    <!-- Navigation bar -->
+    <nav class="sticky top-0 z-50 bg-black bg-opacity-80 backdrop-filter backdrop-blur-lg shadow-md">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#about" class="text-2xl font-bold text-gray-200 transition duration-300 hover:text-blue-500">Konstantinos</a>
+            <div class="space-x-8 hidden md:flex">
+                <a href="#about" class="text-lg text-gray-200 hover:text-blue-500 transition duration-300">About Me</a>
+                <a href="#projects" class="text-lg text-gray-200 hover:text-blue-500 transition duration-300">Projects</a>
+                <a href="#contact" class="text-lg text-gray-200 hover:text-blue-500 transition duration-300">Contact</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden text-gray-200 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
         </div>
-        <div class="flex md:justify-end">
-          <img src="https://github.com/CptKouts/CptKouts.github.io/blob/main/20210601_EFS_669.jpg?raw=true" alt="Portrait of Konstantinos Koutsomitopoulos" class="rounded-2xl w-56 h-56 md:w-72 md:h-72 object-cover border border-white/10 shadow-xl"/>
+        <div id="mobile-menu" class="hidden md:hidden bg-black px-6 pb-4">
+            <a href="#about" class="block py-2 text-gray-200 hover:text-blue-500 transition duration-300 border-b border-gray-700">About Me</a>
+            <a href="#projects" class="block py-2 text-gray-200 hover:text-blue-500 transition duration-300 border-b border-gray-700">Projects</a>
+            <a href="#contact" class="block py-2 text-gray-200 hover:text-blue-500 transition duration-300">Contact</a>
         </div>
-      </div>
-    </section>
+    </nav>
+    <script>
+        document.getElementById('mobile-menu-button').onclick = function() {
+            var menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        };
+    </script>
 
-    <!-- Context strip -->
-    <section class="container mx-auto px-4 pb-4 text-xs text-gray-400">
-      <p>Typical contexts: Automotive · Intralogistics · Software/IT · Manufacturing & Operations</p>
-    </section>
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- About Me Section -->
+        <section id="about" class="py-12 md:py-24 text-center">
+            <div class="max-w-4xl mx-auto">
+                <!-- Image, centered and round -->
+                <div class="flex justify-center mb-8">
+                    <img src="https://github.com/CptKouts/CptKouts.github.io/blob/main/20210601_EFS_669.jpg?raw=true" alt="Konstantinos Koutsomitopoulos Profile Picture" class="rounded-full w-48 h-48 object-cover border-4 border-white">
+                </div>
+                <h1 class="text-4xl md:text-5xl font-extrabold text-gray-100">Konstantinos Koutsomitopoulos</h1>
+                <p class="mt-4 text-lg md:text-xl px-4 sm:px-8 lg:px-12">
+                    I am a project manager and transformation consultant with a background in economics and operational expertise in the automotive and intralogistics industries.
+                </p>
+                <p class="mt-4 text-lg md:text-xl px-4 sm:px-8 lg:px-12">
+                    My approach is analytical, structured, and solution-oriented. I bring different perspectives together to achieve concrete results—a clear external positioning, meaningful internal structures, and processes that truly help in daily operations.
+                </p>
+                <p class="mt-4 text-lg md:text-xl px-4 sm:px-8 lg:px-12">
+                    What drives me is the challenge of bringing clarity to complex matters.
+                </p>
+            </div>
+        </section>
 
-    <!-- About -->
-    <section id="about" class="container mx-auto px-4 py-12 border-t border-white/10">
-      <h2 class="text-3xl md:text-4xl font-bold">About</h2>
-      <p class="mt-4 text-gray-200 max-w-3xl">I work with European organisations to stabilise supply chains, reduce unnecessary complexity, and design frameworks that hold up in everyday operations. My approach is pragmatic and iterative: fast loops, clear priorities, and people‑aware alignment. Whether on‑site or in management discussions, I translate strategy into decisions that work in practice.</p>
-    </section>
+        <!-- Projects Section -->
+        <section id="projects" class="py-12 md:py-24">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl md:text-4xl font-extrabold h2-accent text-center">Selected Projects</h2>
+                <p class="mt-4 text-lg md:text-xl text-center">
+                    In my projects, I support growing companies in structuring internal processes and developing a clear external positioning.
+                </p>
+                <ul class="mt-8 space-y-4 text-lg">
+                    <li>
+                        <strong>Supply Chain Stabilization</strong> – Managed on-site escalation and ramp-up activities for a critical supplier of a German automotive OEM, ensuring uninterrupted prototype and series delivery.
+                    </li>
+                    <li>
+                        <strong>Complexity & Variant Management</strong> – Led modularization and cost-reduction strategies across brands and platforms for an international intralogistics OEM.
+                    </li>
+                    <li>
+                        <strong>Post-Acquisition Integration</strong> – Supported pre- and post-acquisition planning for a UK automotive OEM, including workforce risk analysis and retention strategies.
+                    </li>
+                    <li>
+                        <strong>Cost Transparency & Optimization</strong> – Implemented cross-plant reporting and KPIs to improve supply chain visibility.
+                    </li>
+                </ul>
+            </div>
+        </section>
 
-    <!-- Contexts -->
-    <section id="contexts" class="container mx-auto px-4 py-12 border-t border-white/10">
-      <h2 class="text-3xl md:text-4xl font-bold">Where I’m most helpful</h2>
-      <ul class="mt-6 grid md:grid-cols-2 gap-4 text-gray-300 list-disc pl-5">
-        <li>Supply chains under pressure</li>
-        <li>Product portfolios with too many variants</li>
-        <li>Transformations that need momentum</li>
-        <li>Cost transparency & reporting challenges</li>
-        <li>Governance for IT and cross‑functional processes</li>
-      </ul>
-    </section>
+        <!-- Contact Section -->
+        <section id="contact" class="py-12 md:py-24 text-center">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl md:text-4xl font-extrabold h2-accent">Let's Connect</h2>
+                <p class="mt-4 text-lg md:text-xl max-w-2xl mx-auto">
+                    The collaboration was uncomplicated from the start, with clear communication and a structured approach. He takes responsibility and delivers reliably.
+                </p>
+                <div class="mt-8 space-y-4">
+                    <a href="mailto:your.email@example.com" class="text-2xl font-semibold hover:underline">Email Me</a>
+                    <br>
+                    <a href="https://linkedin.com/in/konstantinos-koutsomitopoulos" target="_blank" class="text-2xl font-semibold hover:underline">LinkedIn</a>
+                    <br>
+                    <a href="https://github.com/CptKouts" target="_blank" class="text-2xl font-semibold hover:underline">GitHub</a>
+                </div>
+            </div>
+        </section>
+    </main>
 
-    <!-- Projects -->
-    <section id="projects" class="container mx-auto px-4 py-12 border-t border-white/10">
-      <h2 class="text-3xl md:text-4xl font-bold">Selected Projects</h2>
-      <p class="mt-3 text-gray-300">Brief, anonymised results. Details on request.</p>
-      <div class="mt-8 grid md:grid-cols-3 gap-6">
-        <article class="rounded-2xl border border-white/10 bg-white/5 p-6">
-          <h3 class="font-semibold">Automotive OEM</h3>
-          <p class="mt-2 text-sm text-gray-300">Secured on‑time series delivery by stabilising supplier bottlenecks and aligning decision paths across teams. Result: fewer escalations, predictable output, and improved delivery confidence.</p>
-        </article>
-        <article class="rounded-2xl border border-white/10 bg-white/5 p-6">
-          <h3 class="font-semibold">Intralogistics OEM</h3>
-          <p class="mt-2 text-sm text-gray-300">Reduced product complexity while keeping brand differentiation by consolidating variants and clarifying option logic. Result: lower development effort and smoother build planning.</p>
-        </article>
-        <article class="rounded-2xl border border-white/10 bg-white/5 p-6">
-          <h3 class="font-semibold">Automotive OEM</h3>
-          <p class="mt-2 text-sm text-gray-300">Enabled smoother post‑acquisition integration through clear risk and retention planning, plus simple routines for coordination. Result: faster decisions and less friction in day‑to‑day work.</p>
-        </article>
-        <article class="rounded-2xl border border-white/10 bg-white/5 p-6">
-          <h3 class="font-semibold">Software Company</h3>
-          <p class="mt-2 text-sm text-gray-300">Established transparent, compliant IT asset management with clear ownership and lifecycle. Result: better audit readiness and fewer surprises in operations.</p>
-        </article>
-        <article class="rounded-2xl border border-white/10 bg-white/5 p-6">
-          <h3 class="font-semibold">Growing SME</h3>
-          <p class="mt-2 text-sm text-gray-300">Clarified external positioning and created internal structures (roles, meetings, processes) that strengthened daily collaboration and reduced friction. Result: a focused message to the market and a calmer, more reliable operating rhythm.</p>
-        </article>
-        <article class="rounded-2xl border border-white/10 bg-white/5 p-6">
-          <h3 class="font-semibold">Manufacturing Client</h3>
-          <p class="mt-2 text-sm text-gray-300">Introduced cross‑plant KPI logic and cost transparency framework. Result: reduced expedited shipment costs and improved accountability across teams.</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- Approach -->
-    <section id="approach" class="container mx-auto px-4 py-12 border-t border-white/10">
-      <h2 class="text-3xl md:text-4xl font-bold">How I work</h2>
-      <ul class="mt-6 grid md:grid-cols-2 gap-4 text-gray-300 list-disc pl-5">
-        <li><span class="font-medium">Outcome‑driven.</span> Practical measures over presentations.</li>
-        <li><span class="font-medium">Iterative.</span> Rapid test → adjust → implement loops.</li>
-        <li><span class="font-medium">People‑aware.</span> Alignment and reduced friction.</li>
-        <li><span class="font-medium">Structured.</span> KPIs and responsibilities that stand in daily use.</li>
-      </ul>
-    </section>
-
-    <!-- Blog -->
-    <section id="blog" class="container mx-auto px-4 py-12 border-t border-white/10">
-      <h2 class="text-3xl md:text-4xl font-bold">Blog</h2>
-      <p class="mt-3 text-gray-300 max-w-2xl">Notes on operations, product complexity, and practical structures. Short, useful reads without jargon.</p>
-      <div class="mt-8 text-gray-300">Articles will appear here once published.</div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="container mx-auto px-4 py-12 border-t border-white/10">
-      <h2 class="text-3xl md:text-4xl font-bold">Let’s connect</h2>
-      <p class="mt-2 text-gray-300">Prefer direct contact over forms. Send an email, connect on LinkedIn, or book directly.</p>
-      <div class="mt-6 flex flex-wrap gap-3">
-        <a href="mailto:info@almakariera.com" class="inline-flex items-center justify-center rounded-xl bg-white text-black px-4 py-2 font-semibold hover:bg-gray-200">Email</a>
-        <a href="https://www.linkedin.com/in/cptkouts/" class="inline-flex items-center justify-center rounded-xl border border-white/30 px-4 py-2 font-semibold hover:bg-white/10">LinkedIn</a>
-        <a href="https://calendar.app.google/RpUJq5FqTQUNFNHh6" target="_blank" class="inline-flex items-center justify-center rounded-xl bg-white text-black px-4 py-2 font-semibold hover:bg-gray-200">Book a call</a>
-      </div>
-    </section>
-  </main>
-
-  <footer class="border-t border-white/10">
-    <div class="container mx-auto px-4 py-8 text-sm text-gray-400">
-      <p>© <span id="year"></span> Konstantinos Koutsomitopoulos. Independent consulting. Vienna · Europe.</p>
-    </div>
-  </footer>
-
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+    <!-- Simple Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Konstantinos Koutsomitopoulos. All rights reserved.</p>
+    </footer>
 </body>
 </html>
