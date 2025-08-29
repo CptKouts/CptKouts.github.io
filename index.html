@@ -76,18 +76,13 @@
     </script>
 
     <main class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Main Header -->
-        <header class="py-12 md:py-24 text-center">
-            <h1 class="text-4xl md:text-5xl font-extrabold text-white">IMPROVE. REDUCE. BUILD.</h1>
-        </header>
-
-        <!-- About Me Section -->
-        <section id="about" class="py-12 md:py-24 flex flex-col md:flex-row-reverse items-center md:items-start gap-8 md:gap-12">
-            <div class="flex-shrink-0 mb-8 md:mb-0">
-                <img src="https://github.com/CptKouts/CptKouts.github.io/blob/main/20210601_EFS_669.jpg?raw=true" alt="Konstantinos Koutsomitopoulos Profile Picture" class="w-48 h-48 md:w-64 md:h-64 object-cover border-4 border-white">
-            </div>
+        <!-- Main Header with motto and About Me Section -->
+        <section id="about" class="py-12 md:py-24 flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12">
             <div class="flex-grow text-center md:text-left">
-                <h1 class="text-4xl md:text-5xl font-extrabold text-gray-100 mb-4">About Me</h1>
+                <!-- Slogan with larger font size -->
+                <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-2">Improve. Reduce. Build.</h2>
+                <!-- About Me heading with smaller font size -->
+                <h1 class="text-3xl md:text-4xl font-extrabold text-gray-100 mb-4">About Me</h1>
                 <p class="mt-4 text-lg md:text-xl">
                     I am a project manager and transformation consultant with a background in economics and operational expertise in the automotive and intralogistics industries.
                 </p>
@@ -98,11 +93,14 @@
                     What drives me is the challenge of bringing clarity to complex matters.
                 </p>
             </div>
+            <div class="flex-shrink-0 mb-8 md:mb-0 md:order-2">
+                <img src="https://github.com/CptKouts/CptKouts.github.io/blob/main/20210601_EFS_669.jpg?raw=true" alt="Konstantinos Koutsomitopoulos Profile Picture" class="w-48 h-48 md:w-64 md:h-64 object-cover border-4 border-white">
+            </div>
         </section>
 
         <!-- Testimonial Section -->
         <section class="py-12 md:py-24">
-            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 bg-gray-900 rounded-lg p-8 shadow-lg">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 bg-gray-900 rounded-lg p-8 shadow-lg text-left">
                 <blockquote class="text-xl italic text-gray-400">
                     “Die Zusammenarbeit mit Konstantinos war von Anfang an unkompliziert, klar in der Kommunikation und strukturiert im Vorgehen. Er hat uns bei mehreren Themen unterstützt, die uns als wachsendes Unternehmen beschäftigen – von Markenfragen bis hin zu internen Abläufen und Zuständigkeiten.
                     Besonders wertvoll war, dass er es geschafft hat, unterschiedlichste Perspektiven zusammenzubringen und daraus etwas Konkretes zu machen: eine klare Positionierung nach außen, sinnvolle Strukturen nach innen und Abläufe, die uns im Alltag wirklich helfen.”
@@ -114,11 +112,11 @@
         <!-- Projects Section -->
         <section id="projects" class="py-12 md:py-24">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl md:text-4xl font-extrabold h2-accent text-center">Selected Projects</h2>
-                <p class="mt-4 text-lg md:text-xl text-center">
+                <h2 class="text-3xl md:text-4xl font-extrabold h2-accent md:text-left">Selected Projects</h2>
+                <p class="mt-4 text-lg md:text-xl md:text-left">
                     In my projects, I support growing companies in structuring internal processes and developing a clear external positioning.
                 </p>
-                <ul class="mt-8 space-y-4 text-lg">
+                <ul class="mt-8 space-y-4 text-lg text-left">
                     <li>
                         <strong>Supply Chain Stabilization</strong> – Managed on-site escalation and ramp-up activities for a critical supplier of a German automotive OEM, ensuring uninterrupted prototype and series delivery.
                     </li>
@@ -136,18 +134,16 @@
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="py-12 md:py-24 text-center">
+        <section id="contact" class="py-12 md:py-24 text-left">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 class="text-3xl md:text-4xl font-extrabold h2-accent">Let's Connect</h2>
                 <p class="mt-4 text-lg md:text-xl max-w-2xl mx-auto">
                     The collaboration was uncomplicated from the start, with clear communication and a structured approach. He takes responsibility and delivers reliably.
                 </p>
                 <div class="mt-8 space-y-4">
-                    <a href="mailto:your.email@example.com" class="text-2xl font-semibold hover:underline">Email Me</a>
-                    <br>
-                    <a href="https://linkedin.com/in/konstantinos-koutsomitopoulos" target="_blank" class="text-2xl font-semibold hover:underline">LinkedIn</a>
-                    <br>
-                    <a href="https://github.com/CptKouts" target="_blank" class="text-2xl font-semibold hover:underline">GitHub</a>
+                    <a href="mailto:your.email@example.com" class="text-2xl font-semibold hover:underline block">Email Me</a>
+                    <a href="https://linkedin.com/in/konstantinos-koutsomitopoulos" target="_blank" class="text-2xl font-semibold hover:underline block">LinkedIn</a>
+                    <a href="https://github.com/CptKouts" target="_blank" class="text-2xl font-semibold hover:underline block">GitHub</a>
                 </div>
             </div>
         </section>
