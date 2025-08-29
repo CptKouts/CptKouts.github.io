@@ -1,188 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Konstantinos Koutsomitopoulos</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap');
-        
-        :root {
-            --background: #000000;
-            --text: #e0e0e0;
-            --accent: #1a73e8;
-            --link: #1a73e8;
-        }
+<!-- Testimonial Section -->
+<section class="py-12 md:py-24 border-t border-gray-800">
+    <div class="bg-gray-900 rounded-lg p-8 shadow-lg">
+        <blockquote class="text-xl italic text-gray-400">
+            “Die Zusammenarbeit mit Konstantinos war von Anfang an unkompliziert, klar in der Kommunikation und strukturiert im Vorgehen. Er hat uns bei mehreren Themen unterstützt, die uns als wachsendes Unternehmen beschäftigen – von Markenfragen bis hin zu internen Abläufen und Zuständigkeiten.
+            Besonders wertvoll war, dass er es geschafft hat, unterschiedlichste Perspektiven zusammenzubringen und daraus etwas Konkretes zu machen: eine klare Positionierung nach außen, sinnvolle Strukturen nach innen und Abläufe, die uns im Alltag wirklich helfen.”
+        </blockquote>
+        <p class="mt-4 text-lg font-bold text-gray-300">- Testimonial from a client</p>
+    </div>
+</section>
 
-        body {
-            background-color: var(--background);
-            color: var(--text);
-            font-family: 'Merriweather', serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            text-align: left; /* default linksbündig */
-        }
+<!-- Projects Section -->
+<section id="projects" class="py-12 md:py-24 border-t border-gray-800">
+    <div>
+        <h2 class="text-3xl md:text-4xl font-extrabold h2-accent">Selected Projects</h2>
+        <p class="mt-4 text-lg md:text-xl mobile-text">
+            In my projects, I support growing companies in structuring internal processes and developing a clear external positioning.
+        </p>
+        <ul class="mt-8 space-y-4 text-lg mobile-text">
+            <li>
+                <strong>Supply Chain Stabilization</strong> – Managed on-site escalation and ramp-up activities for a critical supplier of a German automotive OEM, ensuring uninterrupted prototype and series delivery.
+            </li>
+            <li>
+                <strong>Complexity & Variant Management</strong> – Led modularization and cost-reduction strategies across brands and platforms for an international intralogistics OEM.
+            </li>
+            <li>
+                <strong>Post-Acquisition Integration</strong> – Supported pre- and post-acquisition planning for a UK automotive OEM, including workforce risk analysis and retention strategies.
+            </li>
+            <li>
+                <strong>Cost Transparency & Optimization</strong> – Implemented cross-plant reporting and KPIs to improve supply chain visibility.
+            </li>
+        </ul>
+    </div>
+</section>
 
-        .h2-accent {
-            color: var(--link);
-        }
-
-        ul {
-            list-style: square;
-            padding-left: 1.5rem;
-        }
-
-        a {
-            color: var(--link);
-            text-decoration: underline;
-        }
-        
-        .footer {
-            text-align: center;
-            padding: 2rem;
-            font-size: 0.9rem;
-            color: #777;
-        }
-        
-        /* Mobile menu styling (kept minimal; JS toggles `hidden`) */
-        #mobile-menu {
-            transition: opacity 0.2s ease;
-        }
-        
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .mobile-padding {
-                padding-left: 1rem;
-                padding-right: 1rem;
-            }
-            
-            .profile-img {
-                width: 200px;
-                height: 200px;
-            }
-            
-            .mobile-text {
-                font-size: 1.1rem;
-                line-height: 1.7;
-            }
-        }
-    </style>
-</head>
-<body class="bg-black text-gray-200">
-
-    <!-- Navigation bar -->
-    <nav class="sticky top-0 z-50 bg-gray-900 bg-opacity-90 backdrop-filter backdrop-blur-lg shadow-md">
-        <div class="container px-6 py-4 flex justify-between items-center">
-            <a href="#about" class="text-2xl font-bold text-gray-50 transition duration-300 hover:text-blue-500">Konstantinos Koutsomitopoulos</a>
-            <div class="space-x-8 hidden md:flex">
-                <a href="#about" class="text-lg text-gray-50 hover:text-blue-500 transition duration-300">About Me</a>
-                <a href="#projects" class="text-lg text-gray-50 hover:text-blue-500 transition duration-300">Projects</a>
-                <a href="#contact" class="text-lg text-gray-50 hover:text-blue-500 transition duration-300">Contact</a>
-            </div>
-            <button id="mobile-menu-button" class="md:hidden text-gray-50 focus:outline-none" aria-label="Toggle menu">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-            </button>
+<!-- Contact Section -->
+<section id="contact" class="py-12 md:py-24 border-t border-gray-800">
+    <div>
+        <h2 class="text-3xl md:text-4xl font-extrabold h2-accent">Let's Connect</h2>
+        <p class="mt-4 text-lg md:text-xl mobile-text max-w-2xl">
+            The collaboration was uncomplicated from the start, with clear communication and a structured approach. He takes responsibility and delivers reliably.
+        </p>
+        <div class="mt-8 space-y-4">
+            <a href="mailto:your.email@example.com" class="text-2xl font-semibold hover:underline block">Email Me</a>
+            <a href="https://linkedin.com/in/konstantinos-koutsomitopoulos" target="_blank" class="text-2xl font-semibold hover:underline block">LinkedIn</a>
+            <a href="https://github.com/CptKouts" target="_blank" class="text-2xl font-semibold hover:underline block">GitHub</a>
         </div>
-        <div id="mobile-menu" class="md:hidden hidden bg-gray-800 px-6">
-            <a href="#about" class="block py-3 text-gray-50 hover:text-blue-500 transition duration-300 border-b border-gray-700">About Me</a>
-            <a href="#projects" class="block py-3 text-gray-50 hover:text-blue-500 transition duration-300 border-b border-gray-700">Projects</a>
-            <a href="#contact" class="block py-3 text-gray-50 hover:text-blue-500 transition duration-300">Contact</a>
-        </div>
-    </nav>
-
-    <main class="px-6 mobile-padding">
-        <!-- Main Header with motto and About Me Section -->
-        <section id="about" class="py-12 md:py-24 flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12">
-            <div class="flex-grow">
-                <!-- Slogan with smaller font size -->
-                <h2 class="text-2xl md:text-3xl font-extrabold text-white mb-2">Improve. Reduce. Build.</h2>
-                <!-- About Me heading with larger font size -->
-                <h1 class="text-4xl md:text-5xl font-extrabold text-gray-100 mb-4">About Me</h1>
-                <p class="mt-4 text-lg md:text-xl mobile-text">
-                    I am a project manager and transformation consultant with a background in economics and operational expertise in the automotive and intralogistics industries.
-                </p>
-                <p class="mt-4 text-lg md:text-xl mobile-text">
-                    My approach is analytical, structured, and solution-oriented. I bring different perspectives together to achieve concrete results—a clear external positioning, meaningful internal structures, and processes that truly help in daily operations.
-                </p>
-                <p class="mt-4 text-lg md:text-xl mobile-text">
-                    What drives me is the challenge of bringing clarity to complex matters.
-                </p>
-            </div>
-            <div class="flex-shrink-0 mb-8 md:mb-0">
-                <img src="https://github.com/CptKouts/CptKouts.github.io/blob/main/20210601_EFS_669.jpg?raw=true" alt="Konstantinos Koutsomitopoulos Profile Picture" class="profile-img w-48 h-48 md:w-64 md:h-64 object-cover border-4 border-white">
-            </div>
-        </section>
-
-        <!-- Testimonial Section -->
-        <section class="py-12 md:py-24">
-            <div class="bg-gray-900 rounded-lg p-8 shadow-lg">
-                <blockquote class="text-xl italic text-gray-400">
-                    “Die Zusammenarbeit mit Konstantinos war von Anfang an unkompliziert, klar in der Kommunikation und strukturiert im Vorgehen. Er hat uns bei mehreren Themen unterstützt, die uns als wachsendes Unternehmen beschäftigen – von Markenfragen bis hin zu internen Abläufen und Zuständigkeiten.
-                    Besonders wertvoll war, dass er es geschafft hat, unterschiedlichste Perspektiven zusammenzubringen und daraus etwas Konkretes zu machen: eine klare Positionierung nach außen, sinnvolle Strukturen nach innen und Abläufe, die uns im Alltag wirklich helfen.”
-                </blockquote>
-                <p class="mt-4 text-lg font-bold text-gray-300">- Testimonial from a client</p>
-            </div>
-        </section>
-
-        <!-- Projects Section -->
-        <section id="projects" class="py-12 md:py-24">
-            <div>
-                <h2 class="text-3xl md:text-4xl font-extrabold h2-accent">Selected Projects</h2>
-                <p class="mt-4 text-lg md:text-xl mobile-text">
-                    In my projects, I support growing companies in structuring internal processes and developing a clear external positioning.
-                </p>
-                <ul class="mt-8 space-y-4 text-lg mobile-text">
-                    <li>
-                        <strong>Supply Chain Stabilization</strong> – Managed on-site escalation and ramp-up activities for a critical supplier of a German automotive OEM, ensuring uninterrupted prototype and series delivery.
-                    </li>
-                    <li>
-                        <strong>Complexity & Variant Management</strong> – Led modularization and cost-reduction strategies across brands and platforms for an international intralogistics OEM.
-                    </li>
-                    <li>
-                        <strong>Post-Acquisition Integration</strong> – Supported pre- and post-acquisition planning for a UK automotive OEM, including workforce risk analysis and retention strategies.
-                    </li>
-                    <li>
-                        <strong>Cost Transparency & Optimization</strong> – Implemented cross-plant reporting and KPIs to improve supply chain visibility.
-                    </li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="py-12 md:py-24">
-            <div>
-                <h2 class="text-3xl md:text-4xl font-extrabold h2-accent">Let's Connect</h2>
-                <p class="mt-4 text-lg md:text-xl mobile-text max-w-2xl">
-                    The collaboration was uncomplicated from the start, with clear communication and a structured approach. He takes responsibility and delivers reliably.
-                </p>
-                <div class="mt-8 space-y-4">
-                    <a href="mailto:your.email@example.com" class="text-2xl font-semibold hover:underline block">Email Me</a>
-                    <a href="https://linkedin.com/in/konstantinos-koutsomitopoulos" target="_blank" class="text-2xl font-semibold hover:underline block">LinkedIn</a>
-                    <a href="https://github.com/CptKouts" target="_blank" class="text-2xl font-semibold hover:underline block">GitHub</a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Simple Footer -->
-    <footer class="footer">
-        <p>&copy; 2024 Konstantinos Koutsomitopoulos. All rights reserved.</p>
-    </footer>
-
-    <script>
-        // Mobile menu functionality (simple & reliable)
-        const btn = document.getElementById('mobile-menu-button');
-        const menu = document.getElementById('mobile-menu');
-
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-        });
-
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => menu.classList.add('hidden'));
-        });
-    </script>
-</body>
-</html>
+    </div>
+</section>
