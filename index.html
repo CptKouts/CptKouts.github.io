@@ -237,9 +237,16 @@ h1.hero-name{
   animation:float 6s ease-in-out infinite;
 }
 .hero-photo{
+  display:none; /* source img hidden; canvas takes over */
+}
+#hero-canvas{
   width:100%;
   display:block;
-  object-fit:contain;
+  filter:
+    drop-shadow(0 0 32px rgba(0,168,184,0.55))
+    drop-shadow(0 0 10px rgba(0,168,184,0.35))
+    brightness(1.08) saturate(0.9);
+  transition:opacity 0.6s ease;
 }
 .hero-photo-caption{
   margin-top:0.5rem;
@@ -736,7 +743,8 @@ footer p{
       </div>
     </div>
     <div class="hero-photo-wrap reveal reveal-delay-1">
-      <img src="new.png" alt="Konstantinos Koutsomitopoulos" class="hero-photo">
+      <img src="new.png" id="hero-img" class="hero-photo" alt="Konstantinos Koutsomitopoulos" crossorigin="anonymous">
+      <canvas id="hero-canvas"></canvas>
       <p class="hero-photo-caption" data-i18n="hero.caption">Wien, Österreich</p>
     </div>
   </div>
@@ -1024,6 +1032,34 @@ footer p{
 </footer>
 
 <script>
+// ── Portrait: remove baked-in grey/white background, render as hologram ──
+(function(){
+  const img = document.getElementById('hero-img');
+  const canvas = document.getElementById('hero-canvas');
+  if(!img || !canvas) return;
+  function process(){
+    const ctx = canvas.getContext('2d');
+    canvas.width  = img.naturalWidth;
+    canvas.height = img.naturalHeight;
+    ctx.drawImage(img, 0, 0);
+    const d  = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    const px = d.data;
+    for(let i = 0; i < px.length; i += 4){
+      const r = px[i], g = px[i+1], b = px[i+2];
+      const luma = 0.299*r + 0.587*g + 0.114*b;
+      const sat  = Math.max(r,g,b) - Math.min(r,g,b);
+      // Neutrals above ~145 luma get faded out
+      if(luma > 145 && sat < 35){
+        const fade = Math.min(255, (luma - 145) * 3.5);
+        px[i+3] = Math.max(0, px[i+3] - fade);
+      }
+    }
+    ctx.putImageData(d, 0, 0);
+  }
+  if(img.complete && img.naturalWidth) process();
+  else img.addEventListener('load', process);
+})();
+
 // ── Translations ──
 const T = {
   de: {
