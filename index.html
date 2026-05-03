@@ -291,7 +291,7 @@ section{padding:6rem 0;}
   content:'';
   display:inline-block;
   width:10px;height:10px;
-  background:var(--terra);
+  background:var(--navy);
   flex-shrink:0;
 }
 h2.section-title{
@@ -370,10 +370,12 @@ h2.section-title{
 .cta-strip::before{
   content:'';
   position:absolute;
-  top:-1px;right:0;
-  border-top:64px solid var(--terra);
-  border-left:64px solid transparent;
-  opacity:0.7;
+  inset:0;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size:44px 44px;
+  pointer-events:none;
 }
 .cta-strip-inner{
   max-width:var(--max);margin:0 auto;
@@ -550,90 +552,83 @@ footer p{
   color:rgba(255,255,255,0.45);
 }
 
-/* ── ITALIAN CORPORATE 90s GEOMETRY ── */
+/* ── GEOMETRIC SYSTEM ── */
 
-/* Hero: large teal ring + terracotta square + diagonal hatching */
+/* Grid pattern overlay — the primary decorative element */
 .hero-geo{
   position:absolute;inset:0;
   pointer-events:none;z-index:0;overflow:hidden;
 }
+
+/* Fine blueprint grid covers the right half of the hero */
+.hero-geo-grid{
+  position:absolute;
+  right:0;top:0;bottom:0;
+  width:55%;
+  background-image:
+    linear-gradient(to right, rgba(0,123,135,0.09) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,123,135,0.09) 1px, transparent 1px);
+  background-size:44px 44px;
+}
+
+/* Accent: two clean teal horizontal rules, architectural feel */
+.hero-geo-rule1{
+  position:absolute;
+  right:0;top:32%;
+  width:55%;height:2px;
+  background:var(--navy);
+  opacity:0.18;
+}
+.hero-geo-rule2{
+  position:absolute;
+  right:0;top:68%;
+  width:55%;height:1px;
+  background:var(--navy);
+  opacity:0.12;
+}
+
+/* Solid teal rectangle — single bold anchor shape */
+.hero-geo-block{
+  position:absolute;
+  right:0;top:0;
+  width:6px;height:100%;
+  background:var(--navy);
+  opacity:0.5;
+}
+
+/* Large outlined circle — centred on the photo column */
 .hero-geo-ring{
   position:absolute;
-  right:-80px;top:50%;
+  right:-60px;top:50%;
   transform:translateY(-50%);
-  width:500px;height:500px;
-  border:3px solid var(--navy);
+  width:460px;height:460px;
+  border:2px solid var(--navy);
   border-radius:50%;
-}
-.hero-geo-ring2{
-  position:absolute;
-  right:-140px;top:50%;
-  transform:translateY(-50%);
-  width:620px;height:620px;
-  border:1px solid var(--navy);
-  border-radius:50%;
-  opacity:0.25;
-}
-.hero-geo-sq{
-  position:absolute;
-  right:22%;top:15%;
-  width:52px;height:52px;
-  background:var(--terra);
-}
-.hero-geo-bar{
-  position:absolute;
-  left:0;bottom:18%;
-  width:100px;height:5px;
-  background:var(--terra);
-}
-.hero-geo-hatch{
-  position:absolute;
-  left:0;top:0;
-  width:200px;height:200px;
-  background:repeating-linear-gradient(
-    45deg,
-    var(--navy) 0,var(--navy) 2px,
-    transparent 2px,transparent 14px
-  );
-  opacity:0.06;
-}
-.hero-geo-dot{
-  position:absolute;
-  right:9%;bottom:22%;
-  width:14px;height:14px;
-  background:var(--navy);
-  border-radius:50%;
-}
-
-/* Testimonial: dot-grid background (Olivetti graph-paper feel) */
-#testimonial{
-  background:var(--bg2);
-  background-image:radial-gradient(circle, #cccccc 1.5px, transparent 1.5px);
-  background-size:22px 22px;
-  position:relative;
-}
-
-/* Contact: partial circle outline in corner */
-#contact{background:var(--bg);position:relative;overflow:hidden;}
-#contact::after{
-  content:'';
-  position:absolute;
-  bottom:-100px;right:-100px;
-  width:340px;height:340px;
-  border:3px solid var(--terra);
-  border-radius:50%;
-  pointer-events:none;
   opacity:0.18;
 }
 
-/* Projects: bold left accent bar */
+/* Testimonial: square grid (graph-paper texture) */
+#testimonial{
+  background:var(--bg2);
+  background-image:
+    linear-gradient(to right, rgba(0,123,135,0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,123,135,0.06) 1px, transparent 1px);
+  background-size:28px 28px;
+  position:relative;
+}
+
+/* Contact section */
+#contact{background:var(--bg);position:relative;overflow:hidden;}
+
+/* Projects section */
 #projects{background:var(--bg);position:relative;}
 #projects::before{
   content:'';
   position:absolute;
   top:6rem;left:0;
-  width:4px;height:calc(100% - 12rem);
-  background:linear-gradient(to bottom, var(--navy) 0%, var(--terra) 100%);
+  width:3px;height:calc(100% - 12rem);
+  background:var(--navy);
+  opacity:0.15;
 }
 
 /* ── REVEAL ── */
@@ -657,7 +652,8 @@ footer p{
 }
 @media(max-width:720px){
   .hero-grid{grid-template-columns:1fr;}
-  .hero-photo-wrap{order:-1;max-width:240px;margin:0 auto;}
+  .hero-photo-wrap{display:none;}
+  .hero-geo-grid,.hero-geo-ring{width:100%;}
   .comp-list{grid-template-columns:1fr;}
   .comp-item{border-right:none;border-bottom:1px solid var(--border);}
   .comp-item:last-child{border-bottom:none;}
@@ -666,10 +662,7 @@ footer p{
   .nav-links,.lang-switcher{display:none;}
   .hamburger{display:flex;}
   .cta-strip-inner{flex-direction:column;align-items:flex-start;}
-  .hero-geo-ring,.hero-geo-ring2,.hero-geo-sq,.hero-geo-dot{display:none;}
-  .hero-geo-hatch{width:100px;height:100px;}
   #projects::before{display:none;}
-  #contact::after{width:200px;height:200px;bottom:-60px;right:-60px;}
 }
 </style>
 </head>
@@ -716,12 +709,11 @@ footer p{
 <!-- HERO -->
 <section id="hero">
   <div class="hero-geo" aria-hidden="true">
+    <div class="hero-geo-grid"></div>
+    <div class="hero-geo-rule1"></div>
+    <div class="hero-geo-rule2"></div>
+    <div class="hero-geo-block"></div>
     <div class="hero-geo-ring"></div>
-    <div class="hero-geo-ring2"></div>
-    <div class="hero-geo-sq"></div>
-    <div class="hero-geo-bar"></div>
-    <div class="hero-geo-hatch"></div>
-    <div class="hero-geo-dot"></div>
   </div>
   <div class="hero-grid">
     <div>
