@@ -20,6 +20,7 @@ html{scroll-behavior:smooth}
   --muted:  #888888;
   --navy:   #007B87;
   --navy2:  #005f6b;
+  --terra:  #C84C3A;
   --border: #e0e0e0;
   --serif:  'Comfortaa', system-ui, sans-serif;
   --sans:   'Lexend', system-ui, sans-serif;
@@ -153,6 +154,7 @@ nav.scrolled{
   display:grid;
   grid-template-columns:1fr 320px;
   gap:5rem;align-items:center;
+  position:relative;z-index:1;
 }
 .hero-eyebrow{
   display:flex;align-items:center;gap:0.75rem;
@@ -288,8 +290,9 @@ section{padding:6rem 0;}
 .overline::before{
   content:'';
   display:inline-block;
-  width:24px;height:1px;
-  background:var(--navy);
+  width:10px;height:10px;
+  background:var(--terra);
+  flex-shrink:0;
 }
 h2.section-title{
   font-family:var(--serif);
@@ -362,6 +365,15 @@ h2.section-title{
 .cta-strip{
   background:var(--ink);
   padding:4rem var(--pad);
+  position:relative;overflow:hidden;
+}
+.cta-strip::before{
+  content:'';
+  position:absolute;
+  top:-1px;right:0;
+  border-top:64px solid var(--terra);
+  border-left:64px solid transparent;
+  opacity:0.7;
 }
 .cta-strip-inner{
   max-width:var(--max);margin:0 auto;
@@ -385,7 +397,6 @@ h2.section-title{
 .btn-light:hover{background:var(--bg2);border-color:var(--bg2);}
 
 /* ── TESTIMONIAL ── */
-#testimonial{background:var(--bg2);}
 .testimonial-inner{
   max-width:740px;margin:0 auto;
   text-align:center;
@@ -539,6 +550,92 @@ footer p{
   color:rgba(255,255,255,0.45);
 }
 
+/* ── ITALIAN CORPORATE 90s GEOMETRY ── */
+
+/* Hero: large teal ring + terracotta square + diagonal hatching */
+.hero-geo{
+  position:absolute;inset:0;
+  pointer-events:none;z-index:0;overflow:hidden;
+}
+.hero-geo-ring{
+  position:absolute;
+  right:-80px;top:50%;
+  transform:translateY(-50%);
+  width:500px;height:500px;
+  border:3px solid var(--navy);
+  border-radius:50%;
+}
+.hero-geo-ring2{
+  position:absolute;
+  right:-140px;top:50%;
+  transform:translateY(-50%);
+  width:620px;height:620px;
+  border:1px solid var(--navy);
+  border-radius:50%;
+  opacity:0.25;
+}
+.hero-geo-sq{
+  position:absolute;
+  right:22%;top:15%;
+  width:52px;height:52px;
+  background:var(--terra);
+}
+.hero-geo-bar{
+  position:absolute;
+  left:0;bottom:18%;
+  width:100px;height:5px;
+  background:var(--terra);
+}
+.hero-geo-hatch{
+  position:absolute;
+  left:0;top:0;
+  width:200px;height:200px;
+  background:repeating-linear-gradient(
+    45deg,
+    var(--navy) 0,var(--navy) 2px,
+    transparent 2px,transparent 14px
+  );
+  opacity:0.06;
+}
+.hero-geo-dot{
+  position:absolute;
+  right:9%;bottom:22%;
+  width:14px;height:14px;
+  background:var(--navy);
+  border-radius:50%;
+}
+
+/* Testimonial: dot-grid background (Olivetti graph-paper feel) */
+#testimonial{
+  background:var(--bg2);
+  background-image:radial-gradient(circle, #cccccc 1.5px, transparent 1.5px);
+  background-size:22px 22px;
+  position:relative;
+}
+
+/* Contact: partial circle outline in corner */
+#contact{background:var(--bg);position:relative;overflow:hidden;}
+#contact::after{
+  content:'';
+  position:absolute;
+  bottom:-100px;right:-100px;
+  width:340px;height:340px;
+  border:3px solid var(--terra);
+  border-radius:50%;
+  pointer-events:none;
+  opacity:0.18;
+}
+
+/* Projects: bold left accent bar */
+#projects{background:var(--bg);position:relative;}
+#projects::before{
+  content:'';
+  position:absolute;
+  top:6rem;left:0;
+  width:4px;height:calc(100% - 12rem);
+  background:linear-gradient(to bottom, var(--navy) 0%, var(--terra) 100%);
+}
+
 /* ── REVEAL ── */
 .reveal{
   opacity:0;
@@ -569,6 +666,10 @@ footer p{
   .nav-links,.lang-switcher{display:none;}
   .hamburger{display:flex;}
   .cta-strip-inner{flex-direction:column;align-items:flex-start;}
+  .hero-geo-ring,.hero-geo-ring2,.hero-geo-sq,.hero-geo-dot{display:none;}
+  .hero-geo-hatch{width:100px;height:100px;}
+  #projects::before{display:none;}
+  #contact::after{width:200px;height:200px;bottom:-60px;right:-60px;}
 }
 </style>
 </head>
@@ -614,6 +715,14 @@ footer p{
 
 <!-- HERO -->
 <section id="hero">
+  <div class="hero-geo" aria-hidden="true">
+    <div class="hero-geo-ring"></div>
+    <div class="hero-geo-ring2"></div>
+    <div class="hero-geo-sq"></div>
+    <div class="hero-geo-bar"></div>
+    <div class="hero-geo-hatch"></div>
+    <div class="hero-geo-dot"></div>
+  </div>
   <div class="hero-grid">
     <div>
       <div class="hero-eyebrow reveal">
