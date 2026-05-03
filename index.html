@@ -153,10 +153,10 @@ nav.scrolled{
 .hero-grid{
   max-width:var(--max);
   margin:0 auto;width:100%;
-  display:grid;
-  grid-template-columns:1fr 320px;
-  gap:5rem;align-items:center;
-  position:relative;z-index:1;
+  position:relative;z-index:2;
+}
+.hero-text{
+  max-width:560px;
 }
 .hero-eyebrow{
   display:flex;align-items:center;gap:0.75rem;
@@ -228,24 +228,27 @@ h1.hero-name{
 }
 .btn-outline:hover{border-color:var(--navy);color:var(--navy);}
 
-@keyframes float{
-  0%,100%{transform:translateY(0);}
-  50%{transform:translateY(-12px);}
-}
 .hero-photo-wrap{
-  position:relative;
-  animation:float 6s ease-in-out infinite;
+  position:absolute;
+  right:0;top:0;bottom:0;
+  width:58%;
+  z-index:1;
+  overflow:hidden;
+  -webkit-mask-image:linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 28%, black 55%);
+  mask-image:linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 28%, black 55%);
+  pointer-events:none;
 }
-.hero-photo{
-  display:none; /* source img hidden; canvas takes over */
-}
+.hero-photo{ display:none; }
 #hero-canvas{
-  width:100%;
+  position:absolute;
+  right:0;top:0;
+  height:100%;
+  width:auto;
   display:block;
-  filter: drop-shadow(0 8px 32px rgba(0,0,0,0.6));
+  opacity:0.92;
 }
 .hero-photo-caption{
-  margin-top:0.5rem;
+  display:none;
   font-size:0.72rem;
   letter-spacing:0.06em;
   text-transform:uppercase;
@@ -566,11 +569,10 @@ footer p{
   pointer-events:none;z-index:0;overflow:hidden;
 }
 
-/* Fine blueprint grid covers the right half of the hero */
+/* Fine blueprint grid — full hero background */
 .hero-geo-grid{
   position:absolute;
-  right:0;top:0;bottom:0;
-  width:55%;
+  inset:0;
   background-image:
     linear-gradient(to right, rgba(0,168,184,0.14) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(0,168,184,0.14) 1px, transparent 1px);
@@ -657,9 +659,7 @@ footer p{
   .comp-item:nth-child(2){border-bottom:1px solid var(--border);}
 }
 @media(max-width:720px){
-  .hero-grid{grid-template-columns:1fr;}
   .hero-photo-wrap{display:none;}
-  .hero-geo-grid,.hero-geo-ring{width:100%;}
   .comp-list{grid-template-columns:1fr;}
   .comp-item{border-right:none;border-bottom:1px solid var(--border);}
   .comp-item:last-child{border-bottom:none;}
@@ -721,8 +721,12 @@ footer p{
     <div class="hero-geo-block"></div>
     <div class="hero-geo-ring"></div>
   </div>
+  <div class="hero-photo-wrap">
+    <img src="new.png" id="hero-img" class="hero-photo" alt="Konstantinos Koutsomitopoulos" crossorigin="anonymous">
+    <canvas id="hero-canvas"></canvas>
+  </div>
   <div class="hero-grid">
-    <div>
+    <div class="hero-text">
       <div class="hero-eyebrow reveal">
         <span class="hero-eyebrow-line"></span>
         <span data-i18n="hero.eyebrow">Interim Project &amp; Operations Manager</span>
@@ -737,11 +741,6 @@ footer p{
         <a href="#projects" class="btn btn-dark" data-i18n="hero.btnProjects">Referenzprojekte</a>
         <a href="#contact" class="btn btn-outline" data-i18n="hero.btnContact">Kontakt aufnehmen</a>
       </div>
-    </div>
-    <div class="hero-photo-wrap reveal reveal-delay-1">
-      <img src="new.png" id="hero-img" class="hero-photo" alt="Konstantinos Koutsomitopoulos" crossorigin="anonymous">
-      <canvas id="hero-canvas"></canvas>
-      <p class="hero-photo-caption" data-i18n="hero.caption">Wien, Österreich</p>
     </div>
   </div>
 </section>
