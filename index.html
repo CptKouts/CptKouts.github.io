@@ -1,828 +1,1000 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Konstantinos Koutsomitopoulos – Interim Project & Operations Manager</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <style>
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Konstantinos Koutsomitopoulos – Interim Project & Operations Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
 
-        :root {
-            --bg:        #0a0a0f;
-            --bg2:       #111118;
-            --bg3:       #16161f;
-            --border:    #1e1e2e;
-            --text:      #c8c8d8;
-            --text-muted:#6b6b80;
-            --white:     #f0f0f8;
-            --accent:    #3b82f6;
-            --accent2:   #1d4ed8;
-            --max:       860px;
-        }
+:root{
+  --bg:     #f5f3ef;
+  --bg2:    #edeae4;
+  --white:  #ffffff;
+  --ink:    #141210;
+  --mid:    #4a4640;
+  --muted:  #9a9690;
+  --navy:   #0d2d5e;
+  --navy2:  #1a4a8a;
+  --border: #d8d4cc;
+  --serif:  'DM Serif Display', Georgia, serif;
+  --sans:   'DM Sans', system-ui, sans-serif;
+  --max:    1200px;
+  --pad:    clamp(1.25rem, 5vw, 3.5rem);
+}
 
-        html { scroll-behavior: smooth; }
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:1rem;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
 
-        body {
-            background: var(--bg);
-            color: var(--text);
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem;
-            line-height: 1.75;
-            -webkit-font-smoothing: antialiased;
-        }
+/* ── SCROLL PROGRESS ── */
+#progress-bar{
+  position:fixed;top:0;left:0;
+  height:2px;width:0%;
+  background:var(--navy);
+  z-index:200;
+  transition:width 0.05s linear;
+}
 
-        /* ── NAV ── */
-        nav {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 100;
-            background: rgba(10,10,15,0.85);
-            backdrop-filter: blur(14px);
-            border-bottom: 1px solid var(--border);
-        }
-        .nav-inner {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            height: 64px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .nav-logo {
-            font-weight: 600;
-            font-size: 0.95rem;
-            color: var(--white);
-            text-decoration: none;
-            letter-spacing: 0.01em;
-        }
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
-        .nav-links a {
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: var(--text-muted);
-            text-decoration: none;
-            letter-spacing: 0.03em;
-            transition: color 0.2s;
-        }
-        .nav-links a:hover,
-        .nav-links a.active { color: var(--white); }
-        .nav-links a.active { border-bottom: 2px solid var(--accent); padding-bottom: 2px; }
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;
+  z-index:100;
+  padding:0 var(--pad);
+  height:60px;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:background 0.3s, box-shadow 0.3s;
+}
+nav.scrolled{
+  background:rgba(245,243,239,0.95);
+  backdrop-filter:blur(10px);
+  box-shadow:0 1px 0 var(--border);
+}
+.nav-logo{
+  font-family:var(--serif);
+  font-size:1.05rem;
+  color:var(--ink);
+  text-decoration:none;
+  letter-spacing:0.01em;
+}
+.nav-links{
+  display:flex;gap:2.5rem;list-style:none;
+}
+.nav-links a{
+  font-size:0.8rem;
+  font-weight:500;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--mid);
+  text-decoration:none;
+  transition:color 0.2s;
+  position:relative;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:-3px;left:0;
+  width:0;height:1px;background:var(--navy);
+  transition:width 0.25s;
+}
+.nav-links a:hover,
+.nav-links a.active{color:var(--navy);}
+.nav-links a:hover::after,
+.nav-links a.active::after{width:100%;}
+.hamburger{
+  display:none;background:none;border:none;cursor:pointer;
+  flex-direction:column;gap:5px;padding:4px;
+}
+.hamburger span{
+  display:block;width:22px;height:1.5px;
+  background:var(--ink);transition:all 0.25s;
+}
+.mob-menu{
+  display:none;position:fixed;
+  top:60px;left:0;right:0;
+  background:var(--white);
+  border-bottom:1px solid var(--border);
+  z-index:99;padding:0 var(--pad);
+}
+.mob-menu a{
+  display:block;padding:1rem 0;
+  font-size:0.9rem;font-weight:500;
+  color:var(--ink);text-decoration:none;
+  border-bottom:1px solid var(--border);
+}
+.mob-menu a:last-child{border:none;}
 
-        /* hamburger */
-        .nav-hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 4px;
-        }
-        .nav-hamburger span {
-            display: block;
-            width: 22px;
-            height: 2px;
-            background: var(--white);
-            border-radius: 2px;
-            transition: all 0.25s;
-        }
-        .mobile-nav {
-            display: none;
-            background: var(--bg2);
-            border-bottom: 1px solid var(--border);
-            padding: 1rem 2rem;
-        }
-        .mobile-nav a {
-            display: block;
-            padding: 0.75rem 0;
-            color: var(--text);
-            text-decoration: none;
-            font-size: 0.95rem;
-            border-bottom: 1px solid var(--border);
-        }
-        .mobile-nav a:last-child { border-bottom: none; }
+/* ── HERO ── */
+#hero{
+  min-height:100svh;
+  display:flex;align-items:center;
+  padding:100px var(--pad) 60px;
+  background:var(--bg);
+  overflow:hidden;
+  position:relative;
+}
+.hero-grid{
+  max-width:var(--max);
+  margin:0 auto;width:100%;
+  display:grid;
+  grid-template-columns:1fr 340px;
+  gap:6rem;align-items:center;
+}
+.hero-eyebrow{
+  display:flex;align-items:center;gap:0.75rem;
+  margin-bottom:1.75rem;
+}
+.hero-eyebrow-line{
+  width:32px;height:1px;background:var(--navy);
+}
+.hero-eyebrow span{
+  font-size:0.72rem;
+  font-weight:600;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--navy);
+}
+h1.hero-name{
+  font-family:var(--serif);
+  font-size:clamp(3rem, 6vw, 5.5rem);
+  line-height:1.05;
+  color:var(--ink);
+  margin-bottom:1.5rem;
+}
+.hero-role{
+  font-size:1.1rem;
+  font-weight:300;
+  color:var(--mid);
+  margin-bottom:2.5rem;
+  max-width:480px;
+}
+.hero-bio{
+  font-size:1rem;color:var(--mid);
+  max-width:500px;line-height:1.75;
+}
+.hero-bio p+p{margin-top:0.85rem;}
+.hero-actions{
+  display:flex;gap:1rem;flex-wrap:wrap;
+  margin-top:2.75rem;
+}
+.btn{
+  display:inline-block;
+  padding:0.7rem 1.6rem;
+  font-size:0.82rem;
+  font-weight:600;
+  letter-spacing:0.05em;
+  text-transform:uppercase;
+  text-decoration:none;
+  border-radius:2px;
+  transition:all 0.2s;
+}
+.btn-dark{
+  background:var(--navy);color:#fff;
+  border:1px solid var(--navy);
+}
+.btn-dark:hover{background:var(--navy2);}
+.btn-outline{
+  background:transparent;color:var(--ink);
+  border:1px solid var(--border);
+}
+.btn-outline:hover{border-color:var(--navy);color:var(--navy);}
+.hero-photo-wrap{position:relative;}
+.hero-photo{
+  width:100%;aspect-ratio:3/4;
+  object-fit:cover;
+  display:block;
+  filter:grayscale(15%) contrast(1.05);
+}
+.hero-photo-caption{
+  margin-top:0.75rem;
+  font-size:0.72rem;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  color:var(--muted);
+  text-align:right;
+}
 
-        /* ── LAYOUT ── */
-        .section {
-            max-width: var(--max);
-            margin: 0 auto;
-            padding: 6rem 2rem;
-        }
+/* ── MARQUEE ── */
+.marquee-wrap{
+  background:var(--navy);
+  overflow:hidden;padding:1rem 0;
+}
+.marquee-track{
+  display:flex;white-space:nowrap;
+  animation:marquee 28s linear infinite;
+}
+.marquee-item{
+  flex-shrink:0;
+  padding:0 2.5rem;
+  font-size:0.7rem;
+  font-weight:600;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,0.75);
+}
+.marquee-dot{
+  color:rgba(255,255,255,0.3);
+}
+@keyframes marquee{
+  from{transform:translateX(0);}
+  to{transform:translateX(-50%);}
+}
 
-        /* ── HERO ── */
-        #hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding-top: 64px;
-            background:
-                radial-gradient(ellipse 60% 50% at 70% 40%, rgba(59,130,246,0.07) 0%, transparent 70%),
-                var(--bg);
-        }
-        .hero-inner {
-            max-width: var(--max);
-            margin: 0 auto;
-            padding: 4rem 2rem;
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 4rem;
-            align-items: center;
-        }
-        .hero-tag {
-            display: inline-block;
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--accent);
-            background: rgba(59,130,246,0.1);
-            border: 1px solid rgba(59,130,246,0.25);
-            border-radius: 100px;
-            padding: 0.3rem 0.9rem;
-            margin-bottom: 1.5rem;
-        }
-        .hero-name {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.2rem, 5vw, 3.5rem);
-            color: var(--white);
-            line-height: 1.15;
-            margin-bottom: 0.5rem;
-        }
-        .hero-title {
-            font-size: 1.15rem;
-            font-weight: 400;
-            color: var(--text-muted);
-            margin-bottom: 2rem;
-        }
-        .hero-bio p + p { margin-top: 1rem; }
-        .hero-bio p { font-size: 1rem; color: var(--text); max-width: 560px; }
-        .hero-cta {
-            margin-top: 2.5rem;
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-        .btn-primary {
-            display: inline-block;
-            padding: 0.75rem 1.75rem;
-            background: var(--accent);
-            color: #fff;
-            font-size: 0.875rem;
-            font-weight: 600;
-            border-radius: 6px;
-            text-decoration: none;
-            transition: background 0.2s, transform 0.15s;
-        }
-        .btn-primary:hover { background: var(--accent2); transform: translateY(-1px); }
-        .btn-secondary {
-            display: inline-block;
-            padding: 0.75rem 1.75rem;
-            background: transparent;
-            color: var(--white);
-            font-size: 0.875rem;
-            font-weight: 600;
-            border-radius: 6px;
-            border: 1px solid var(--border);
-            text-decoration: none;
-            transition: border-color 0.2s, transform 0.15s;
-        }
-        .btn-secondary:hover { border-color: var(--accent); transform: translateY(-1px); }
-        .hero-photo {
-            width: 220px;
-            height: 220px;
-            border-radius: 12px;
-            object-fit: cover;
-            border: 1px solid var(--border);
-            filter: grayscale(20%);
-        }
+/* ── SECTION BASE ── */
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad);}
+section{padding:6rem 0;}
+section.alt{background:var(--white);}
 
-        /* ── SECTION HEADER ── */
-        .section-label {
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 0.75rem;
-        }
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(1.75rem, 3.5vw, 2.25rem);
-            color: var(--white);
-            line-height: 1.2;
-            margin-bottom: 1rem;
-        }
-        .section-divider {
-            width: 40px;
-            height: 3px;
-            background: var(--accent);
-            border-radius: 2px;
-            margin-bottom: 3rem;
-        }
+.overline{
+  font-size:0.68rem;
+  font-weight:700;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--navy);
+  margin-bottom:1rem;
+  display:flex;align-items:center;gap:0.6rem;
+}
+.overline::before{
+  content:'';
+  display:inline-block;
+  width:24px;height:1px;
+  background:var(--navy);
+}
+h2.section-title{
+  font-family:var(--serif);
+  font-size:clamp(2rem, 4vw, 3rem);
+  color:var(--ink);line-height:1.15;
+  margin-bottom:3.5rem;
+}
 
-        /* ── COMPETENCIES ── */
-        #competencies { background: var(--bg2); }
-        #competencies .section { padding-top: 6rem; padding-bottom: 6rem; }
-        .comp-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.25rem;
-        }
-        .comp-card {
-            background: var(--bg3);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 1.75rem;
-            transition: border-color 0.2s, transform 0.2s;
-        }
-        .comp-card:hover { border-color: rgba(59,130,246,0.4); transform: translateY(-2px); }
-        .comp-icon {
-            width: 36px;
-            height: 36px;
-            background: rgba(59,130,246,0.12);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1rem;
-        }
-        .comp-icon svg { width: 18px; height: 18px; color: var(--accent); }
-        .comp-card h3 {
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: var(--white);
-            margin-bottom: 0.5rem;
-        }
-        .comp-card p { font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; }
+/* ── COMPETENCIES ── */
+.comp-list{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:0;
+  border:1px solid var(--border);
+}
+.comp-item{
+  padding:2.5rem 2rem;
+  border-right:1px solid var(--border);
+  transition:background 0.2s;
+  cursor:default;
+}
+.comp-item:last-child{border-right:none;}
+.comp-item:hover{background:var(--bg2);}
+.comp-num{
+  font-family:var(--serif);
+  font-size:2.5rem;
+  color:var(--border);
+  line-height:1;
+  margin-bottom:1.25rem;
+  transition:color 0.2s;
+}
+.comp-item:hover .comp-num{color:var(--navy);}
+.comp-item h3{
+  font-size:0.9rem;
+  font-weight:600;
+  color:var(--ink);
+  margin-bottom:0.6rem;
+  line-height:1.3;
+}
+.comp-item p{
+  font-size:0.82rem;
+  color:var(--mid);
+  line-height:1.65;
+}
+.meta-row{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:2rem;
+  margin-top:4rem;padding-top:3rem;
+  border-top:1px solid var(--border);
+}
+.meta-block h4{
+  font-size:0.68rem;font-weight:700;
+  letter-spacing:0.16em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:1rem;
+}
+.meta-block ul{list-style:none;padding:0;}
+.meta-block li{
+  font-size:0.9rem;color:var(--mid);
+  padding:0.3rem 0;
+  border-bottom:1px solid var(--border);
+}
+.meta-block li:last-child{border:none;}
 
-        .meta-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-            padding-top: 3rem;
-            border-top: 1px solid var(--border);
-        }
-        .meta-block h4 {
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 0.75rem;
-        }
-        .meta-block ul { list-style: none; padding: 0; }
-        .meta-block li {
-            font-size: 0.9rem;
-            color: var(--text);
-            padding: 0.3rem 0;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .meta-block li::before {
-            content: '';
-            width: 5px;
-            height: 5px;
-            background: var(--accent);
-            border-radius: 50%;
-            flex-shrink: 0;
-        }
+/* ── CTA STRIP ── */
+.cta-strip{
+  background:var(--ink);
+  padding:4rem var(--pad);
+}
+.cta-strip-inner{
+  max-width:var(--max);margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:2rem;flex-wrap:wrap;
+}
+.cta-strip p{
+  font-family:var(--serif);
+  font-size:clamp(1.4rem,3vw,2rem);
+  color:var(--white);
+  max-width:560px;
+  line-height:1.3;
+  font-style:italic;
+}
+.btn-light{
+  background:var(--white);color:var(--ink);
+  border:1px solid var(--white);
+  flex-shrink:0;
+  white-space:nowrap;
+}
+.btn-light:hover{background:var(--bg);border-color:var(--bg);}
 
-        /* ── TESTIMONIAL ── */
-        #testimonial {
-            background:
-                radial-gradient(ellipse 50% 80% at 20% 50%, rgba(59,130,246,0.05) 0%, transparent 70%),
-                var(--bg);
-        }
-        .testimonial-card {
-            border-left: 3px solid var(--accent);
-            padding: 2rem 2.5rem;
-            background: var(--bg2);
-            border-radius: 0 10px 10px 0;
-        }
-        blockquote {
-            font-size: 1.05rem;
-            font-style: italic;
-            color: var(--text);
-            line-height: 1.8;
-        }
-        .testimonial-author {
-            margin-top: 1.25rem;
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: var(--text-muted);
-        }
+/* ── TESTIMONIAL ── */
+#testimonial{background:var(--bg2);}
+.testimonial-inner{
+  max-width:740px;margin:0 auto;
+  text-align:center;
+}
+.quote-mark{
+  font-family:var(--serif);
+  font-size:5rem;line-height:0.5;
+  color:var(--navy);
+  margin-bottom:2rem;
+  display:block;
+}
+blockquote{
+  font-family:var(--serif);
+  font-size:clamp(1.1rem,2.2vw,1.4rem);
+  font-style:italic;
+  color:var(--ink);
+  line-height:1.7;
+}
+.testimonial-attr{
+  margin-top:2rem;
+  font-size:0.8rem;
+  font-weight:500;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
 
-        /* ── PROJECTS ── */
-        #projects { background: var(--bg2); }
-        #projects .section { padding-top: 6rem; padding-bottom: 6rem; }
-        .project-list { display: flex; flex-direction: column; gap: 1.5rem; }
-        .project-card {
-            background: var(--bg3);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            overflow: hidden;
-            transition: border-color 0.2s;
-        }
-        .project-card:hover { border-color: rgba(59,130,246,0.35); }
-        .project-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 1rem;
-            padding: 1.5rem 1.75rem;
-            cursor: pointer;
-            user-select: none;
-        }
-        .project-header-left { flex: 1; }
-        .project-title {
-            font-size: 0.975rem;
-            font-weight: 600;
-            color: var(--white);
-            line-height: 1.4;
-            margin-bottom: 0.3rem;
-        }
-        .project-subtitle {
-            font-size: 0.8rem;
-            color: var(--accent);
-            font-weight: 500;
-        }
-        .project-toggle {
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            border: 1px solid var(--border);
-            background: transparent;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            color: var(--text-muted);
-            transition: background 0.2s, color 0.2s, transform 0.25s;
-            cursor: pointer;
-        }
-        .project-card.open .project-toggle {
-            background: rgba(59,130,246,0.15);
-            color: var(--accent);
-            transform: rotate(45deg);
-        }
-        .project-body {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.35s ease;
-        }
-        .project-body-inner {
-            padding: 0 1.75rem 1.75rem;
-            border-top: 1px solid var(--border);
-            padding-top: 1.25rem;
-        }
-        .project-desc {
-            font-size: 0.875rem;
-            color: var(--text-muted);
-            margin-bottom: 1rem;
-            line-height: 1.7;
-        }
-        .project-points { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.6rem; }
-        .project-points li {
-            font-size: 0.875rem;
-            color: var(--text);
-            padding-left: 1.25rem;
-            position: relative;
-            line-height: 1.6;
-        }
-        .project-points li::before {
-            content: '›';
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-            font-weight: 700;
-        }
-        .project-points strong { color: var(--white); font-weight: 600; }
+/* ── PROJECTS ── */
+#projects{background:var(--white);}
+.project-row{
+  border-top:1px solid var(--border);
+  padding:2rem 0;
+  display:grid;
+  grid-template-columns:80px 1fr auto;
+  gap:2rem;
+  align-items:start;
+  cursor:pointer;
+  transition:background 0.15s;
+}
+.project-row:last-child{border-bottom:1px solid var(--border);}
+.project-row:hover{background:var(--bg);}
+.project-num{
+  font-family:var(--serif);
+  font-size:2rem;
+  color:var(--border);
+  line-height:1;
+  transition:color 0.2s;
+  padding-top:0.1rem;
+}
+.project-row:hover .project-num,
+.project-row.open .project-num{color:var(--navy);}
+.project-meta{}
+.project-title{
+  font-size:1rem;
+  font-weight:600;
+  color:var(--ink);
+  line-height:1.35;
+  margin-bottom:0.3rem;
+}
+.project-tag{
+  font-size:0.72rem;
+  font-weight:500;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--navy);
+}
+.project-chevron{
+  width:32px;height:32px;
+  border:1px solid var(--border);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+  color:var(--muted);
+  transition:all 0.25s;
+  margin-top:0.1rem;
+}
+.project-row.open .project-chevron,
+.project-row:hover .project-chevron{
+  border-color:var(--navy);
+  color:var(--navy);
+}
+.project-row.open .project-chevron svg{
+  transform:rotate(45deg);
+}
+.project-chevron svg{transition:transform 0.25s;}
+.project-body{
+  grid-column:2/-1;
+  max-height:0;overflow:hidden;
+  transition:max-height 0.4s ease;
+}
+.project-body-inner{
+  padding-bottom:1rem;
+}
+.project-desc{
+  font-size:0.875rem;
+  color:var(--mid);
+  margin-bottom:1rem;
+  max-width:660px;
+  line-height:1.7;
+}
+.project-points{
+  list-style:none;padding:0;
+  display:flex;flex-direction:column;gap:0.5rem;
+  max-width:660px;
+}
+.project-points li{
+  font-size:0.875rem;
+  color:var(--mid);
+  padding-left:1.1rem;
+  position:relative;
+  line-height:1.65;
+}
+.project-points li::before{
+  content:'–';
+  position:absolute;left:0;
+  color:var(--navy);
+}
+.project-points strong{color:var(--ink);font-weight:600;}
 
-        /* ── CONTACT ── */
-        #contact {
-            background:
-                radial-gradient(ellipse 60% 60% at 80% 60%, rgba(59,130,246,0.06) 0%, transparent 70%),
-                var(--bg);
-        }
-        .contact-inner { max-width: 540px; }
-        .contact-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            margin-top: 2rem;
-            padding: 0.75rem 1.5rem;
-            background: var(--bg2);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            color: var(--white);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: border-color 0.2s, transform 0.15s;
-        }
-        .contact-link:hover { border-color: var(--accent); transform: translateY(-1px); }
-        .contact-link svg { color: var(--accent); flex-shrink: 0; }
+/* ── CONTACT ── */
+#contact{background:var(--bg);}
+.contact-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:6rem;align-items:start;
+}
+.contact-left h2{margin-bottom:1rem;}
+.contact-left p{
+  font-size:1rem;color:var(--mid);
+  max-width:420px;line-height:1.75;
+}
+.contact-link{
+  display:inline-flex;align-items:center;gap:0.75rem;
+  margin-top:2.5rem;
+  text-decoration:none;
+  color:var(--ink);
+  font-weight:500;
+  font-size:0.95rem;
+  border-bottom:1px solid var(--border);
+  padding-bottom:0.5rem;
+  transition:border-color 0.2s,color 0.2s;
+}
+.contact-link:hover{border-color:var(--navy);color:var(--navy);}
+.contact-right{
+  display:flex;flex-direction:column;gap:2rem;
+}
+.stat-item{}
+.stat-num{
+  font-family:var(--serif);
+  font-size:3rem;
+  color:var(--navy);
+  line-height:1;
+}
+.stat-label{
+  font-size:0.8rem;
+  font-weight:500;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-top:0.25rem;
+}
 
-        /* ── FOOTER ── */
-        footer {
-            text-align: center;
-            padding: 2.5rem 2rem;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            border-top: 1px solid var(--border);
-            background: var(--bg);
-        }
+/* ── FOOTER ── */
+footer{
+  background:var(--ink);
+  padding:2rem var(--pad);
+  display:flex;
+  align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:1rem;
+}
+footer p{
+  font-size:0.78rem;
+  color:rgba(255,255,255,0.35);
+}
 
-        /* ── FADE-IN ── */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.55s ease, transform 0.55s ease;
-        }
-        .fade-in.visible { opacity: 1; transform: none; }
+/* ── REVEAL ANIMATIONS ── */
+.reveal{
+  opacity:0;
+  transform:translateY(28px);
+  transition:opacity 0.65s cubic-bezier(.22,1,.36,1),
+             transform 0.65s cubic-bezier(.22,1,.36,1);
+}
+.reveal.visible{opacity:1;transform:none;}
+.reveal-delay-1{transition-delay:0.1s;}
+.reveal-delay-2{transition-delay:0.2s;}
+.reveal-delay-3{transition-delay:0.3s;}
 
-        /* ── RESPONSIVE ── */
-        @media (max-width: 700px) {
-            .hero-inner { grid-template-columns: 1fr; gap: 2rem; }
-            .hero-photo { width: 140px; height: 140px; order: -1; }
-            .comp-grid { grid-template-columns: 1fr; }
-            .meta-grid { grid-template-columns: 1fr; }
-            .nav-links { display: none; }
-            .nav-hamburger { display: flex; }
-        }
-    </style>
+/* ── RESPONSIVE ── */
+@media(max-width:1000px){
+  .comp-list{grid-template-columns:repeat(2,1fr);}
+  .comp-item:nth-child(2){border-right:none;}
+  .comp-item:nth-child(1),
+  .comp-item:nth-child(2){border-bottom:1px solid var(--border);}
+  .contact-grid{grid-template-columns:1fr;}
+}
+@media(max-width:720px){
+  .hero-grid{grid-template-columns:1fr;}
+  .hero-photo-wrap{order:-1;max-width:260px;}
+  .comp-list{grid-template-columns:1fr;}
+  .comp-item{border-right:none;border-bottom:1px solid var(--border);}
+  .comp-item:last-child{border-bottom:none;}
+  .meta-row{grid-template-columns:1fr;}
+  .project-row{grid-template-columns:48px 1fr auto;gap:1rem;}
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .cta-strip-inner{flex-direction:column;align-items:flex-start;}
+}
+</style>
 </head>
 <body>
 
-<!-- ── NAVIGATION ── -->
+<div id="progress-bar"></div>
+
+<!-- NAV -->
 <nav id="nav">
-    <div class="nav-inner">
-        <a href="#hero" class="nav-logo">Konstantinos Koutsomitopoulos</a>
-        <ul class="nav-links">
-            <li><a href="#hero">Profil</a></li>
-            <li><a href="#competencies">Kompetenzen</a></li>
-            <li><a href="#projects">Projekte</a></li>
-            <li><a href="#contact">Kontakt</a></li>
-        </ul>
-        <button class="nav-hamburger" id="hamburger" aria-label="Menü">
-            <span></span><span></span><span></span>
-        </button>
-    </div>
-    <div class="mobile-nav" id="mobile-nav">
-        <a href="#hero">Profil</a>
-        <a href="#competencies">Kompetenzen</a>
-        <a href="#projects">Projekte</a>
-        <a href="#contact">Kontakt</a>
-    </div>
+  <a href="#hero" class="nav-logo">KK</a>
+  <ul class="nav-links">
+    <li><a href="#hero">Profil</a></li>
+    <li><a href="#competencies">Kompetenzen</a></li>
+    <li><a href="#projects">Projekte</a></li>
+    <li><a href="#contact">Kontakt</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menü">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="mob-menu" id="mob-menu">
+  <a href="#hero">Profil</a>
+  <a href="#competencies">Kompetenzen</a>
+  <a href="#projects">Projekte</a>
+  <a href="#contact">Kontakt</a>
+</div>
 
-<!-- ── HERO ── -->
+<!-- HERO -->
 <section id="hero">
-    <div class="hero-inner">
-        <div>
-            <span class="hero-tag">Interim Project &amp; Operations Manager</span>
-            <h1 class="hero-name">Konstantinos<br>Koutsomitopoulos</h1>
-            <p class="hero-title">Improve. Reduce. Build.</p>
-            <div class="hero-bio">
-                <p>Projektmanager und Transformationsberater mit wirtschaftswissenschaftlichem Hintergrund und operativer Expertise in der Automobil- und Intralogistikbranche.</p>
-                <p>Mein Ansatz ist analytisch, strukturiert und lösungsorientiert – vom Krisenmanagement bis zur nachhaltigen Prozessoptimierung.</p>
-            </div>
-            <div class="hero-cta">
-                <a href="#projects" class="btn-primary">Referenzprojekte</a>
-                <a href="#contact" class="btn-secondary">Kontakt aufnehmen</a>
-            </div>
-        </div>
-        <img src="https://github.com/CptKouts/CptKouts.github.io/blob/main/20210601_EFS_669.jpg?raw=true" alt="Konstantinos Koutsomitopoulos" class="hero-photo">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-eyebrow reveal">
+        <span class="hero-eyebrow-line"></span>
+        <span>Interim Project &amp; Operations Manager</span>
+      </div>
+      <h1 class="hero-name reveal reveal-delay-1">Konstantinos<br>Koutsomito&shy;poulos</h1>
+      <p class="hero-role reveal reveal-delay-2">Improve. Reduce. Build.</p>
+      <div class="hero-bio reveal reveal-delay-2">
+        <p>Projektmanager und Transformationsberater mit wirtschaftswissenschaftlichem Hintergrund und operativer Expertise in der Automobil- und Intralogistikbranche.</p>
+        <p>Analytisch, strukturiert, lösungsorientiert – vom Krisenmanagement bis zur nachhaltigen Prozessoptimierung.</p>
+      </div>
+      <div class="hero-actions reveal reveal-delay-3">
+        <a href="#projects" class="btn btn-dark">Referenzprojekte</a>
+        <a href="#contact" class="btn btn-outline">Kontakt aufnehmen</a>
+      </div>
     </div>
+    <div class="hero-photo-wrap reveal reveal-delay-1">
+      <img src="https://github.com/CptKouts/CptKouts.github.io/blob/main/20210601_EFS_669.jpg?raw=true" alt="Konstantinos Koutsomitopoulos" class="hero-photo">
+      <p class="hero-photo-caption">Wien, Österreich</p>
+    </div>
+  </div>
 </section>
 
-<!-- ── COMPETENCIES ── -->
-<div id="competencies">
-<div class="section fade-in">
-    <p class="section-label">Expertise</p>
-    <h2 class="section-title">Kernkompetenzen</h2>
-    <div class="section-divider"></div>
-
-    <div class="comp-grid">
-        <div class="comp-card">
-            <div class="comp-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-            </div>
-            <h3>Operational Excellence</h3>
-            <p>Prozessoptimierung, Kostenmanagement und Effizienzsteigerung in Produktion und Logistik.</p>
-        </div>
-        <div class="comp-card">
-            <div class="comp-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            </div>
-            <h3>Transformation &amp; Stabilisierung</h3>
-            <p>Begleitung von Organisationsänderungen, Standortverlagerungen und Krisenmanagement (Taskforce).</p>
-        </div>
-        <div class="comp-card">
-            <div class="comp-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-            </div>
-            <h3>PMO &amp; Governance</h3>
-            <p>Etablierung von Reporting-Landschaften, Kennzahlensystemen (KPI) und Rollenmodellen (RACI).</p>
-        </div>
-        <div class="comp-card">
-            <div class="comp-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
-            </div>
-            <h3>Qualitätsmanagement</h3>
-            <p>Durchführung von On-Site-Audits und Prozessabsicherung (VDA 6.3 / PPAP).</p>
-        </div>
-    </div>
-
-    <div class="meta-grid">
-        <div class="meta-block">
-            <h4>Zertifizierungen</h4>
-            <ul>
-                <li>VDA 6.3 Auditor</li>
-                <li>Scrum Master</li>
-            </ul>
-        </div>
-        <div class="meta-block">
-            <h4>Sprachen</h4>
-            <ul>
-                <li>Deutsch – Muttersprache</li>
-                <li>Englisch – Verhandlungssicher</li>
-            </ul>
-        </div>
-    </div>
-</div>
+<!-- MARQUEE -->
+<div class="marquee-wrap" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item">Operational Excellence</span><span class="marquee-item marquee-dot">·</span>
+    <span class="marquee-item">Supply Chain Management</span><span class="marquee-item marquee-dot">·</span>
+    <span class="marquee-item">PMO &amp; Governance</span><span class="marquee-item marquee-dot">·</span>
+    <span class="marquee-item">Automotive</span><span class="marquee-item marquee-dot">·</span>
+    <span class="marquee-item">Transformation</span><span class="marquee-item marquee-dot">·</span>
+    <span class="marquee-item">VDA 6.3 Auditor</span><span class="marquee-item marquee-dot">·</span>
+    <span class="marquee-item">Krisenmanagement</span><span class="marquee-item marquee-dot">·</span>
+    <span class="marquee-item">Intralogistik</span><span class="marquee-item marquee-dot">·</span>
+    <span class="marquee-item">Operational Excellence</span><span class="marquee-item marquee-dot">·</span>
+    <span class="marquee-item">Supply Chain Management</span><span class="marquee-item marquee-dot">·</span>
+    <span class="marquee-item">PMO &amp; Governance</span><span class="marquee-item marquee-dot">·</span>
+    <span class="marquee-item">Automotive</span><span class="marquee-item marquee-dot">·</span>
+    <span class="marquee-item">Transformation</span><span class="marquee-item marquee-dot">·</span>
+    <span class="marquee-item">VDA 6.3 Auditor</span><span class="marquee-item marquee-dot">·</span>
+    <span class="marquee-item">Krisenmanagement</span><span class="marquee-item marquee-dot">·</span>
+    <span class="marquee-item">Intralogistik</span><span class="marquee-item marquee-dot">·</span>
+  </div>
 </div>
 
-<!-- ── TESTIMONIAL ── -->
+<!-- COMPETENCIES -->
+<section id="competencies" class="alt">
+  <div class="wrap">
+    <div class="overline reveal">Expertise</div>
+    <h2 class="section-title reveal">Was ich einbringe</h2>
+    <div class="comp-list reveal">
+      <div class="comp-item">
+        <div class="comp-num">01</div>
+        <h3>Operational Excellence</h3>
+        <p>Prozessoptimierung, Kostenmanagement und Effizienzsteigerung in Produktion und Logistik.</p>
+      </div>
+      <div class="comp-item">
+        <div class="comp-num">02</div>
+        <h3>Transformation &amp; Stabilisierung</h3>
+        <p>Begleitung von Organisationsänderungen, Standortverlagerungen und Krisenmanagement.</p>
+      </div>
+      <div class="comp-item">
+        <div class="comp-num">03</div>
+        <h3>PMO &amp; Governance</h3>
+        <p>Reporting-Landschaften, KPI-Systeme und Rollenmodelle (RACI) für klare Verantwortlichkeiten.</p>
+      </div>
+      <div class="comp-item">
+        <div class="comp-num">04</div>
+        <h3>Qualitätsmanagement</h3>
+        <p>On-Site-Audits und Prozessabsicherung nach VDA 6.3 und PPAP-Standard.</p>
+      </div>
+    </div>
+    <div class="meta-row reveal">
+      <div class="meta-block">
+        <h4>Zertifizierungen</h4>
+        <ul>
+          <li>VDA 6.3 Auditor</li>
+          <li>Scrum Master</li>
+        </ul>
+      </div>
+      <div class="meta-block">
+        <h4>Sprachen</h4>
+        <ul>
+          <li>Deutsch – Muttersprache</li>
+          <li>Englisch – Verhandlungssicher</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA STRIP 1 -->
+<div class="cta-strip">
+  <div class="cta-strip-inner">
+    <p>Auf der Suche nach einem erfahrenen Interim Manager für Ihr nächstes Projekt?</p>
+    <a href="#contact" class="btn btn-light">Gespräch vereinbaren</a>
+  </div>
+</div>
+
+<!-- TESTIMONIAL -->
 <section id="testimonial">
-<div class="section fade-in">
-    <div class="testimonial-card">
-        <blockquote>
-            „Die Zusammenarbeit mit Konstantinos war von Anfang an unkompliziert, klar in der Kommunikation und strukturiert im Vorgehen. Er hat uns bei mehreren Themen unterstützt, die uns als wachsendes Unternehmen beschäftigen – von Markenfragen bis hin zu internen Abläufen und Zuständigkeiten. Besonders wertvoll war, dass er es geschafft hat, unterschiedlichste Perspektiven zusammenzubringen und daraus etwas Konkretes zu machen."
-        </blockquote>
-        <p class="testimonial-author">— Referenz eines Kunden</p>
+  <div class="wrap">
+    <div class="testimonial-inner reveal">
+      <span class="quote-mark">"</span>
+      <blockquote>
+        Die Zusammenarbeit war von Anfang an unkompliziert, klar in der Kommunikation und strukturiert im Vorgehen. Besonders wertvoll war, dass er es geschafft hat, unterschiedlichste Perspektiven zusammenzubringen und daraus etwas Konkretes zu machen – eine klare Positionierung nach außen, sinnvolle Strukturen nach innen und Abläufe, die im Alltag wirklich helfen.
+      </blockquote>
+      <p class="testimonial-attr">— Referenz eines Kunden</p>
     </div>
-</div>
+  </div>
 </section>
 
-<!-- ── PROJECTS ── -->
-<div id="projects">
-<div class="section fade-in">
-    <p class="section-label">Erfahrung</p>
-    <h2 class="section-title">Referenzprojekte</h2>
-    <div class="section-divider"></div>
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="wrap">
+    <div class="overline reveal">Erfahrung</div>
+    <h2 class="section-title reveal">Referenzprojekte</h2>
 
-    <div class="project-list">
-
-        <div class="project-card">
-            <div class="project-header">
-                <div class="project-header-left">
-                    <p class="project-title">Ganzheitliche Professionalisierung der Organisationsstruktur und operativen Prozesse</p>
-                    <p class="project-subtitle">Organisationstransformation</p>
-                </div>
-                <button class="project-toggle" aria-label="Details">
-                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg>
-                </button>
-            </div>
-            <div class="project-body">
-                <div class="project-body-inner">
-                    <p class="project-desc">Verantwortung der schrittweisen Transformation der Unternehmensprozesse – von der strategischen Personalplanung bis zur operativen Kostenoptimierung im Kernbetrieb.</p>
-                    <ul class="project-points">
-                        <li><strong>Organisationsdesign:</strong> Neudefinition der Teamstrukturen sowie Implementierung von Rollenmodellen (RACI) zur Reduktion von Reibungsverlusten.</li>
-                        <li><strong>Management-Systeme:</strong> Etablierung strukturierter Kommunikationsroutinen und Eskalationsmechanismen zur Sicherstellung der operativen Handlungsfähigkeit.</li>
-                        <li><strong>Effizienzsteigerung:</strong> Durchführung detaillierter Kapazitäts- und Kostenanalysen im Werkstattbetrieb sowie Identifikation von Einsparungspotenzialen.</li>
-                        <li><strong>Digitalisierung:</strong> Überführung analoger Abläufe in digitale Workflows und Aufbau von Governance-Frameworks.</li>
-                    </ul>
-                </div>
-            </div>
+    <div class="project-row reveal" tabindex="0" role="button" aria-expanded="false">
+      <div class="project-num">01</div>
+      <div class="project-meta">
+        <p class="project-title">Ganzheitliche Professionalisierung der Organisationsstruktur und operativen Prozesse</p>
+        <p class="project-tag">Organisationstransformation</p>
+      </div>
+      <div class="project-chevron">
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+          <line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/>
+        </svg>
+      </div>
+      <div class="project-body">
+        <div class="project-body-inner">
+          <p class="project-desc">Verantwortung der schrittweisen Transformation der Unternehmensprozesse – von der strategischen Personalplanung bis zur operativen Kostenoptimierung im Kernbetrieb.</p>
+          <ul class="project-points">
+            <li><strong>Organisationsdesign:</strong> Neudefinition der Teamstrukturen und Implementierung von Rollenmodellen (RACI).</li>
+            <li><strong>Management-Systeme:</strong> Strukturierte Kommunikationsroutinen und Eskalationsmechanismen.</li>
+            <li><strong>Effizienzsteigerung:</strong> Kapazitäts- und Kostenanalysen im Werkstattbetrieb.</li>
+            <li><strong>Digitalisierung:</strong> Überführung analoger Abläufe in digitale Workflows und Governance-Frameworks.</li>
+          </ul>
         </div>
-
-        <div class="project-card">
-            <div class="project-header">
-                <div class="project-header-left">
-                    <p class="project-title">Interim Taskforce Management &amp; Verlagerungssteuerung</p>
-                    <p class="project-subtitle">Automotive</p>
-                </div>
-                <button class="project-toggle" aria-label="Details">
-                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg>
-                </button>
-            </div>
-            <div class="project-body">
-                <div class="project-body-inner">
-                    <ul class="project-points">
-                        <li><strong>Operative Verlagerungssteuerung:</strong> Begleitung der Standortverlagerung eines strategischen Zulieferers inklusive Aufgaben-Tracking zur Sicherstellung der OEM-Anforderungen.</li>
-                        <li><strong>Supply Chain Monitoring:</strong> Aufbau eines täglichen Produktions-Monitorings und Erstellung transparenter Bestandsübersichten auf Sachnummernebene.</li>
-                        <li><strong>Krisenmanagement:</strong> Entwicklung von Notfallkonzepten zur Versorgungsabsicherung über alternative Standorte.</li>
-                        <li><strong>Schnittstellenmanagement:</strong> Zentrale Funktion zwischen Zulieferer und OEM-Supplier-Management sowie proaktive Eskalation kritischer Themen.</li>
-                        <li><strong>On-Site Qualitätsabsicherung:</strong> Durchführung von Vor-Ort-Besuchen beim Zulieferer zur Verifizierung der Lieferfähigkeit.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="project-card">
-            <div class="project-header">
-                <div class="project-header-left">
-                    <p class="project-title">Supply Chain Stabilisierung &amp; Ramp-up Management</p>
-                    <p class="project-subtitle">German Automotive OEM</p>
-                </div>
-                <button class="project-toggle" aria-label="Details">
-                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg>
-                </button>
-            </div>
-            <div class="project-body">
-                <div class="project-body-inner">
-                    <ul class="project-points">
-                        <li>Stabilisierung der Lieferkette während der Prototypenphase direkt vor Ort beim kritischen Zulieferer.</li>
-                        <li>Planung und Steuerung des Serienanlaufs inklusive Durchführung von On-Site PPAP-Audits und Kommunikationsmanagement.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="project-card">
-            <div class="project-header">
-                <div class="project-header-left">
-                    <p class="project-title">Varianz- und Komplexitätsmanagement</p>
-                    <p class="project-subtitle">Internationaler Intralogistik OEM</p>
-                </div>
-                <button class="project-toggle" aria-label="Details">
-                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg>
-                </button>
-            </div>
-            <div class="project-body">
-                <div class="project-body-inner">
-                    <ul class="project-points">
-                        <li>Optimierung des Produktportfolios in Neuprojekten und der laufenden Serienfertigung.</li>
-                        <li>Analyse technischer Abhängigkeiten und Definition von Prozessen zur Variantenreduzierung und Modularisierung über verschiedene Marken hinweg.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="project-card">
-            <div class="project-header">
-                <div class="project-header-left">
-                    <p class="project-title">Implementation of IT Asset Management</p>
-                    <p class="project-subtitle">Automotive Software</p>
-                </div>
-                <button class="project-toggle" aria-label="Details">
-                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg>
-                </button>
-            </div>
-            <div class="project-body">
-                <div class="project-body-inner">
-                    <ul class="project-points">
-                        <li>Entwicklung und Implementierung eines Governance-Frameworks inklusive Rollen und Prozeduren zur Einhaltung von Informationssicherheits-Richtlinien.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="project-card">
-            <div class="project-header">
-                <div class="project-header-left">
-                    <p class="project-title">Supply Chain Cost Transparency Project</p>
-                    <p class="project-subtitle">German Automotive OEM</p>
-                </div>
-                <button class="project-toggle" aria-label="Details">
-                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg>
-                </button>
-            </div>
-            <div class="project-body">
-                <div class="project-body-inner">
-                    <ul class="project-points">
-                        <li>Einführung einer Reporting-Logik und KPI-Landschaft zur Erhöhung der standortübergreifenden Kostentransparenz.</li>
-                        <li>Optimierung von Prozessabläufen zur signifikanten Reduzierung von Sonderfrachtkosten.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="project-card">
-            <div class="project-header">
-                <div class="project-header-left">
-                    <p class="project-title">Management Support Pre- &amp; Post-Acquisition</p>
-                    <p class="project-subtitle">UK / French Automotive OEM</p>
-                </div>
-                <button class="project-toggle" aria-label="Details">
-                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg>
-                </button>
-            </div>
-            <div class="project-body">
-                <div class="project-body-inner">
-                    <ul class="project-points">
-                        <li>Review von Unternehmensdokumenten auf „Red Flags" und Erstellung von Management-Summaries für Verhandlungen mit Ministerien.</li>
-                        <li>Entwicklung von Methoden zur Risikobewertung der Belegschaft und Erstellung von Incentive-Modellen zur Sicherung von strategischem Know-how.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="project-card">
-            <div class="project-header">
-                <div class="project-header-left">
-                    <p class="project-title">Cost Down Projekte &amp; Wirtschaftlichkeitsstudien</p>
-                    <p class="project-subtitle">UK Automotive OEM</p>
-                </div>
-                <button class="project-toggle" aria-label="Details">
-                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg>
-                </button>
-            </div>
-            <div class="project-body">
-                <div class="project-body-inner">
-                    <ul class="project-points">
-                        <li>Analyse von Ist-Kosten und Definition von Einsparungszielen für neu erworbene Produktionsstandorte.</li>
-                        <li>Analyse der technischen Machbarkeit und Kostenstrukturen für neue Fahrzeugprojekte unter Berücksichtigung internationaler Gesetzgebung.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
+      </div>
     </div>
-</div>
+
+    <div class="project-row reveal" tabindex="0" role="button" aria-expanded="false">
+      <div class="project-num">02</div>
+      <div class="project-meta">
+        <p class="project-title">Interim Taskforce Management &amp; Verlagerungssteuerung</p>
+        <p class="project-tag">Automotive</p>
+      </div>
+      <div class="project-chevron">
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+          <line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/>
+        </svg>
+      </div>
+      <div class="project-body">
+        <div class="project-body-inner">
+          <ul class="project-points">
+            <li><strong>Verlagerungssteuerung:</strong> Standortverlagerung eines strategischen Zulieferers inkl. Aufgaben-Tracking zur Sicherstellung der OEM-Anforderungen.</li>
+            <li><strong>Supply Chain Monitoring:</strong> Tägliches Produktions-Monitoring und Bestandsübersichten auf Sachnummernebene.</li>
+            <li><strong>Krisenmanagement:</strong> Notfallkonzepte zur Versorgungsabsicherung über alternative Standorte.</li>
+            <li><strong>Schnittstellenmanagement:</strong> Zentrale Funktion zwischen Zulieferer und OEM-Supplier-Management.</li>
+            <li><strong>On-Site Qualitätsabsicherung:</strong> Vor-Ort-Besuche zur Verifizierung der Lieferfähigkeit.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-row reveal" tabindex="0" role="button" aria-expanded="false">
+      <div class="project-num">03</div>
+      <div class="project-meta">
+        <p class="project-title">Supply Chain Stabilisierung &amp; Ramp-up Management</p>
+        <p class="project-tag">German Automotive OEM</p>
+      </div>
+      <div class="project-chevron">
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+          <line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/>
+        </svg>
+      </div>
+      <div class="project-body">
+        <div class="project-body-inner">
+          <ul class="project-points">
+            <li>Stabilisierung der Lieferkette während der Prototypenphase direkt vor Ort beim kritischen Zulieferer.</li>
+            <li>Planung und Steuerung des Serienanlaufs inkl. On-Site PPAP-Audits und Kommunikationsmanagement.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-row reveal" tabindex="0" role="button" aria-expanded="false">
+      <div class="project-num">04</div>
+      <div class="project-meta">
+        <p class="project-title">Varianz- und Komplexitätsmanagement</p>
+        <p class="project-tag">Internationaler Intralogistik OEM</p>
+      </div>
+      <div class="project-chevron">
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+          <line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/>
+        </svg>
+      </div>
+      <div class="project-body">
+        <div class="project-body-inner">
+          <ul class="project-points">
+            <li>Optimierung des Produktportfolios in Neuprojekten und laufender Serienfertigung.</li>
+            <li>Analyse technischer Abhängigkeiten und Definition von Prozessen zur Variantenreduzierung über verschiedene Marken hinweg.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-row reveal" tabindex="0" role="button" aria-expanded="false">
+      <div class="project-num">05</div>
+      <div class="project-meta">
+        <p class="project-title">Implementation of IT Asset Management</p>
+        <p class="project-tag">Automotive Software</p>
+      </div>
+      <div class="project-chevron">
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+          <line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/>
+        </svg>
+      </div>
+      <div class="project-body">
+        <div class="project-body-inner">
+          <ul class="project-points">
+            <li>Entwicklung und Implementierung eines Governance-Frameworks inkl. Rollen und Prozeduren zur Einhaltung von Informationssicherheits-Richtlinien.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-row reveal" tabindex="0" role="button" aria-expanded="false">
+      <div class="project-num">06</div>
+      <div class="project-meta">
+        <p class="project-title">Supply Chain Cost Transparency Project</p>
+        <p class="project-tag">German Automotive OEM</p>
+      </div>
+      <div class="project-chevron">
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+          <line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/>
+        </svg>
+      </div>
+      <div class="project-body">
+        <div class="project-body-inner">
+          <ul class="project-points">
+            <li>Einführung einer Reporting-Logik und KPI-Landschaft zur standortübergreifenden Kostentransparenz.</li>
+            <li>Optimierung von Prozessabläufen zur signifikanten Reduzierung von Sonderfrachtkosten.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-row reveal" tabindex="0" role="button" aria-expanded="false">
+      <div class="project-num">07</div>
+      <div class="project-meta">
+        <p class="project-title">Management Support Pre- &amp; Post-Acquisition</p>
+        <p class="project-tag">UK / French Automotive OEM</p>
+      </div>
+      <div class="project-chevron">
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+          <line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/>
+        </svg>
+      </div>
+      <div class="project-body">
+        <div class="project-body-inner">
+          <ul class="project-points">
+            <li>Review von Unternehmensdokumenten auf „Red Flags" und Erstellung von Management-Summaries für Verhandlungen mit Ministerien.</li>
+            <li>Risikobewertung der Belegschaft und Incentive-Modelle zur Sicherung von strategischem Know-how.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-row reveal" tabindex="0" role="button" aria-expanded="false">
+      <div class="project-num">08</div>
+      <div class="project-meta">
+        <p class="project-title">Cost Down Projekte &amp; Wirtschaftlichkeitsstudien</p>
+        <p class="project-tag">UK Automotive OEM</p>
+      </div>
+      <div class="project-chevron">
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+          <line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/>
+        </svg>
+      </div>
+      <div class="project-body">
+        <div class="project-body-inner">
+          <ul class="project-points">
+            <li>Analyse von Ist-Kosten und Definition von Einsparungszielen für neu erworbene Produktionsstandorte.</li>
+            <li>Technische Machbarkeit und Kostenstrukturen für neue Fahrzeugprojekte unter Berücksichtigung internationaler Gesetzgebung.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA STRIP 2 -->
+<div class="cta-strip">
+  <div class="cta-strip-inner">
+    <p>Bereit für Ihr nächstes Transformationsprojekt?</p>
+    <a href="#contact" class="btn btn-light">Jetzt Kontakt aufnehmen</a>
+  </div>
 </div>
 
-<!-- ── CONTACT ── -->
+<!-- CONTACT -->
 <section id="contact">
-<div class="section fade-in">
-    <div class="contact-inner">
-        <p class="section-label">Kontakt</p>
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="contact-left reveal">
+        <div class="overline">Kontakt</div>
         <h2 class="section-title">Zusammenarbeit anfragen</h2>
-        <div class="section-divider"></div>
-        <p style="color:var(--text); font-size:1rem;">Interesse an einer Zusammenarbeit? Ich freue mich über Ihre Nachricht – unkompliziert und direkt.</p>
+        <p>Interesse an einer Zusammenarbeit? Ich freue mich über Ihre Nachricht – unkompliziert und direkt.</p>
         <a href="https://www.linkedin.com/in/konstantinos-koutsomitopoulos" target="_blank" rel="noopener noreferrer" class="contact-link">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-            LinkedIn-Profil aufrufen
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn-Profil aufrufen
         </a>
+      </div>
+      <div class="contact-right reveal reveal-delay-1">
+        <div class="stat-item">
+          <div class="stat-num" data-target="8">0</div>
+          <div class="stat-label">Referenzprojekte</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num" data-target="2">0</div>
+          <div class="stat-label">Zertifizierungen</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num" data-target="2">0</div>
+          <div class="stat-label">Sprachen</div>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
 </section>
 
-<!-- ── FOOTER ── -->
+<!-- FOOTER -->
 <footer>
-    <p>&copy; 2025 Konstantinos Koutsomitopoulos &nbsp;·&nbsp; Alle Rechte vorbehalten</p>
+  <p>&copy; 2025 Konstantinos Koutsomitopoulos</p>
+  <p>Wien, Österreich</p>
 </footer>
 
 <script>
-    // Mobile menu
-    const hamburger = document.getElementById('hamburger');
-    const mobileNav = document.getElementById('mobile-nav');
-    hamburger.addEventListener('click', () => {
-        mobileNav.style.display = mobileNav.style.display === 'block' ? 'none' : 'block';
-    });
-    mobileNav.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', () => { mobileNav.style.display = 'none'; });
-    });
+// Scroll progress
+const bar = document.getElementById('progress-bar');
+window.addEventListener('scroll', () => {
+  const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+  bar.style.width = pct + '%';
+}, { passive: true });
 
-    // Active nav link on scroll
-    const sections = document.querySelectorAll('section[id], div[id]');
-    const navLinks = document.querySelectorAll('.nav-links a');
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                navLinks.forEach(l => l.classList.remove('active'));
-                const link = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
-                if (link) link.classList.add('active');
-            }
-        });
-    }, { rootMargin: '-40% 0px -55% 0px' });
-    sections.forEach(s => observer.observe(s));
+// Nav on scroll
+const navEl = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  navEl.classList.toggle('scrolled', window.scrollY > 30);
+}, { passive: true });
 
-    // Accordion projects
-    document.querySelectorAll('.project-header').forEach(header => {
-        header.addEventListener('click', () => {
-            const card = header.closest('.project-card');
-            const body = card.querySelector('.project-body');
-            const isOpen = card.classList.contains('open');
-            // close all
-            document.querySelectorAll('.project-card.open').forEach(c => {
-                c.classList.remove('open');
-                c.querySelector('.project-body').style.maxHeight = '0';
-            });
-            if (!isOpen) {
-                card.classList.add('open');
-                body.style.maxHeight = body.scrollHeight + 'px';
-            }
-        });
+// Mobile menu
+const hamburger = document.getElementById('hamburger');
+const mobMenu = document.getElementById('mob-menu');
+hamburger.addEventListener('click', () => {
+  mobMenu.style.display = mobMenu.style.display === 'block' ? 'none' : 'block';
+});
+mobMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  mobMenu.style.display = 'none';
+}));
+
+// Active nav
+const sections = document.querySelectorAll('section[id], div[id].cta-strip');
+const navLinks = document.querySelectorAll('.nav-links a');
+const sectionObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const link = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+      if (link) link.classList.add('active');
+    }
+  });
+}, { rootMargin: '-35% 0px -60% 0px' });
+document.querySelectorAll('section[id]').forEach(s => sectionObserver.observe(s));
+
+// Reveal on scroll
+const reveals = document.querySelectorAll('.reveal');
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
+  });
+}, { threshold: 0.07 });
+reveals.forEach(r => revealObs.observe(r));
+
+// Project accordions
+document.querySelectorAll('.project-row').forEach(row => {
+  const activate = () => {
+    const body = row.querySelector('.project-body');
+    const isOpen = row.classList.contains('open');
+    document.querySelectorAll('.project-row.open').forEach(r => {
+      r.classList.remove('open');
+      r.querySelector('.project-body').style.maxHeight = '0';
+      r.setAttribute('aria-expanded', 'false');
     });
+    if (!isOpen) {
+      row.classList.add('open');
+      body.style.maxHeight = body.scrollHeight + 'px';
+      row.setAttribute('aria-expanded', 'true');
+    }
+  };
+  row.addEventListener('click', activate);
+  row.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); } });
+});
 
-    // Fade-in on scroll
-    const faders = document.querySelectorAll('.fade-in');
-    const fadeObserver = new IntersectionObserver(entries => {
-        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); fadeObserver.unobserve(e.target); } });
-    }, { threshold: 0.08 });
-    faders.forEach(f => fadeObserver.observe(f));
+// Stat counter
+const statNums = document.querySelectorAll('.stat-num[data-target]');
+const countObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target;
+    const target = parseInt(el.dataset.target);
+    let start = 0;
+    const step = () => {
+      start++;
+      el.textContent = start;
+      if (start < target) setTimeout(step, 120);
+    };
+    setTimeout(step, 300);
+    countObs.unobserve(el);
+  });
+}, { threshold: 0.5 });
+statNums.forEach(n => countObs.observe(n));
 </script>
-
 </body>
 </html>
