@@ -242,11 +242,7 @@ h1.hero-name{
 #hero-canvas{
   width:100%;
   display:block;
-  filter:
-    drop-shadow(0 0 32px rgba(0,168,184,0.55))
-    drop-shadow(0 0 10px rgba(0,168,184,0.35))
-    brightness(1.08) saturate(0.9);
-  transition:opacity 0.6s ease;
+  filter: drop-shadow(0 8px 32px rgba(0,0,0,0.6));
 }
 .hero-photo-caption{
   margin-top:0.5rem;
@@ -1032,7 +1028,7 @@ footer p{
 </footer>
 
 <script>
-// ── Portrait: remove baked-in grey/white background, render as hologram ──
+// ── Portrait: remove baked-in grey/white checkerboard background ──
 (function(){
   const img = document.getElementById('hero-img');
   const canvas = document.getElementById('hero-canvas');
@@ -1046,12 +1042,16 @@ footer p{
     const px = d.data;
     for(let i = 0; i < px.length; i += 4){
       const r = px[i], g = px[i+1], b = px[i+2];
+      const max = Math.max(r,g,b), min = Math.min(r,g,b);
+      const sat = max - min;                       // 0=grey, >20=colour
       const luma = 0.299*r + 0.587*g + 0.114*b;
-      const sat  = Math.max(r,g,b) - Math.min(r,g,b);
-      // Neutrals above ~145 luma get faded out
-      if(luma > 145 && sat < 35){
-        const fade = Math.min(255, (luma - 145) * 3.5);
-        px[i+3] = Math.max(0, px[i+3] - fade);
+      if(sat < 12 && luma > 80){
+        // Pure neutral grey or white → fully transparent
+        px[i+3] = 0;
+      } else if(sat < 30 && luma > 160){
+        // Near-neutral bright edge → fade proportionally
+        const t = ((30 - sat) / 30) * ((luma - 160) / 95);
+        px[i+3] = Math.floor(px[i+3] * (1 - t));
       }
     }
     ctx.putImageData(d, 0, 0);
