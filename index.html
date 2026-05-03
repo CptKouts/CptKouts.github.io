@@ -55,22 +55,24 @@ nav{
   transition:background 0.3s, box-shadow 0.3s;
 }
 nav.scrolled{
-  background:rgba(245,243,239,0.95);
+  background:rgba(255,255,255,0.95);
   backdrop-filter:blur(10px);
   box-shadow:0 1px 0 var(--border);
 }
 .nav-logo{
   font-family:var(--serif);
+  font-weight:700;
   font-size:1.05rem;
   color:var(--ink);
   text-decoration:none;
   letter-spacing:0.01em;
 }
+.nav-right{display:flex;align-items:center;gap:2rem;}
 .nav-links{
-  display:flex;gap:2.5rem;list-style:none;
+  display:flex;gap:2.25rem;list-style:none;
 }
 .nav-links a{
-  font-size:0.8rem;
+  font-size:0.78rem;
   font-weight:500;
   letter-spacing:0.08em;
   text-transform:uppercase;
@@ -88,6 +90,26 @@ nav.scrolled{
 .nav-links a.active{color:var(--navy);}
 .nav-links a:hover::after,
 .nav-links a.active::after{width:100%;}
+
+/* ── LANG SWITCHER ── */
+.lang-switcher{
+  display:flex;align-items:center;gap:0.15rem;
+  padding-left:1.5rem;
+  border-left:1px solid var(--border);
+}
+.lang-btn{
+  background:none;border:none;cursor:pointer;
+  font-family:var(--sans);
+  font-size:0.72rem;font-weight:600;
+  letter-spacing:0.1em;
+  color:var(--muted);
+  padding:0.3rem 0.5rem;
+  transition:color 0.2s;
+}
+.lang-btn:hover{color:var(--ink);}
+.lang-btn.active{color:var(--navy);}
+.lang-sep{color:var(--border);font-size:0.7rem;}
+
 .hamburger{
   display:none;background:none;border:none;cursor:pointer;
   flex-direction:column;gap:5px;padding:4px;
@@ -110,6 +132,11 @@ nav.scrolled{
   border-bottom:1px solid var(--border);
 }
 .mob-menu a:last-child{border:none;}
+.mob-menu .mob-langs{
+  display:flex;gap:0.5rem;
+  padding:1rem 0;
+  border-bottom:1px solid var(--border);
+}
 
 /* ── HERO ── */
 #hero{
@@ -124,8 +151,8 @@ nav.scrolled{
   max-width:var(--max);
   margin:0 auto;width:100%;
   display:grid;
-  grid-template-columns:1fr 340px;
-  gap:6rem;align-items:center;
+  grid-template-columns:1fr 320px;
+  gap:5rem;align-items:center;
 }
 .hero-eyebrow{
   display:flex;align-items:center;gap:0.75rem;
@@ -143,21 +170,30 @@ nav.scrolled{
 }
 h1.hero-name{
   font-family:var(--serif);
-  font-size:clamp(3rem, 6vw, 5.5rem);
-  line-height:1.05;
+  font-weight:700;
+  font-size:clamp(2.4rem, 5vw, 4.4rem);
+  line-height:1.1;
+  letter-spacing:-0.02em;
   color:var(--ink);
   margin-bottom:1.5rem;
 }
+.hero-name .surname{
+  display:inline-block;
+  white-space:nowrap;
+  color:var(--navy);
+}
 .hero-role{
-  font-size:1.1rem;
-  font-weight:300;
+  font-family:var(--serif);
+  font-size:1.15rem;
+  font-weight:600;
   color:var(--mid);
   margin-bottom:2.5rem;
   max-width:480px;
+  letter-spacing:0.02em;
 }
 .hero-bio{
   font-size:1rem;color:var(--mid);
-  max-width:500px;line-height:1.75;
+  max-width:520px;line-height:1.75;
 }
 .hero-bio p+p{margin-top:0.85rem;}
 .hero-actions{
@@ -166,25 +202,28 @@ h1.hero-name{
 }
 .btn{
   display:inline-block;
-  padding:0.7rem 1.6rem;
-  font-size:0.82rem;
-  font-weight:600;
-  letter-spacing:0.05em;
+  padding:0.75rem 1.7rem;
+  font-family:var(--sans);
+  font-size:0.8rem;
+  font-weight:500;
+  letter-spacing:0.06em;
   text-transform:uppercase;
   text-decoration:none;
   border-radius:2px;
   transition:all 0.2s;
+  cursor:pointer;
 }
 .btn-dark{
   background:var(--navy);color:#fff;
   border:1px solid var(--navy);
 }
-.btn-dark:hover{background:var(--navy2);}
+.btn-dark:hover{background:var(--navy2);border-color:var(--navy2);}
 .btn-outline{
   background:transparent;color:var(--ink);
   border:1px solid var(--border);
 }
 .btn-outline:hover{border-color:var(--navy);color:var(--navy);}
+
 @keyframes float{
   0%,100%{transform:translateY(0);}
   50%{transform:translateY(-12px);}
@@ -221,15 +260,13 @@ h1.hero-name{
 .marquee-item{
   flex-shrink:0;
   padding:0 2.5rem;
-  font-size:0.7rem;
+  font-size:0.72rem;
   font-weight:600;
   letter-spacing:0.16em;
   text-transform:uppercase;
-  color:rgba(255,255,255,0.75);
+  color:rgba(255,255,255,0.85);
 }
-.marquee-dot{
-  color:rgba(255,255,255,0.3);
-}
+.marquee-dot{color:rgba(255,255,255,0.35);}
 @keyframes marquee{
   from{transform:translateX(0);}
   to{transform:translateX(-50%);}
@@ -238,7 +275,6 @@ h1.hero-name{
 /* ── SECTION BASE ── */
 .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad);}
 section{padding:6rem 0;}
-section.alt{background:var(--white);}
 
 .overline{
   font-size:0.68rem;
@@ -257,12 +293,16 @@ section.alt{background:var(--white);}
 }
 h2.section-title{
   font-family:var(--serif);
-  font-size:clamp(2rem, 4vw, 3rem);
-  color:var(--ink);line-height:1.15;
+  font-weight:700;
+  font-size:clamp(1.8rem, 3.5vw, 2.6rem);
+  color:var(--ink);
+  line-height:1.2;
   margin-bottom:3.5rem;
+  letter-spacing:-0.01em;
 }
 
 /* ── COMPETENCIES ── */
+#competencies{background:var(--bg);}
 .comp-list{
   display:grid;
   grid-template-columns:repeat(4,1fr);
@@ -273,13 +313,13 @@ h2.section-title{
   padding:2.5rem 2rem;
   border-right:1px solid var(--border);
   transition:background 0.2s;
-  cursor:default;
 }
 .comp-item:last-child{border-right:none;}
 .comp-item:hover{background:var(--bg2);}
 .comp-num{
   font-family:var(--serif);
-  font-size:2.5rem;
+  font-weight:700;
+  font-size:2.2rem;
   color:var(--border);
   line-height:1;
   margin-bottom:1.25rem;
@@ -287,14 +327,15 @@ h2.section-title{
 }
 .comp-item:hover .comp-num{color:var(--navy);}
 .comp-item h3{
-  font-size:0.9rem;
-  font-weight:600;
+  font-family:var(--serif);
+  font-size:0.95rem;
+  font-weight:700;
   color:var(--ink);
   margin-bottom:0.6rem;
   line-height:1.3;
 }
 .comp-item p{
-  font-size:0.82rem;
+  font-size:0.85rem;
   color:var(--mid);
   line-height:1.65;
 }
@@ -312,7 +353,7 @@ h2.section-title{
 .meta-block ul{list-style:none;padding:0;}
 .meta-block li{
   font-size:0.9rem;color:var(--mid);
-  padding:0.3rem 0;
+  padding:0.4rem 0;
   border-bottom:1px solid var(--border);
 }
 .meta-block li:last-child{border:none;}
@@ -329,19 +370,19 @@ h2.section-title{
 }
 .cta-strip p{
   font-family:var(--serif);
-  font-size:clamp(1.4rem,3vw,2rem);
+  font-weight:600;
+  font-size:clamp(1.3rem,2.6vw,1.85rem);
   color:var(--white);
-  max-width:560px;
-  line-height:1.3;
-  font-style:italic;
+  max-width:620px;
+  line-height:1.35;
+  letter-spacing:-0.005em;
 }
 .btn-light{
   background:var(--white);color:var(--ink);
   border:1px solid var(--white);
-  flex-shrink:0;
-  white-space:nowrap;
+  flex-shrink:0;white-space:nowrap;
 }
-.btn-light:hover{background:var(--bg);border-color:var(--bg);}
+.btn-light:hover{background:var(--bg2);border-color:var(--bg2);}
 
 /* ── TESTIMONIAL ── */
 #testimonial{background:var(--bg2);}
@@ -351,6 +392,7 @@ h2.section-title{
 }
 .quote-mark{
   font-family:var(--serif);
+  font-weight:700;
   font-size:5rem;line-height:0.5;
   color:var(--navy);
   margin-bottom:2rem;
@@ -358,26 +400,25 @@ h2.section-title{
 }
 blockquote{
   font-family:var(--serif);
-  font-size:clamp(1.1rem,2.2vw,1.4rem);
-  font-style:normal;
   font-weight:400;
+  font-size:clamp(1.1rem,2.2vw,1.4rem);
   color:var(--ink);
   line-height:1.8;
 }
 .testimonial-attr{
   margin-top:2rem;
-  font-size:0.8rem;
+  font-size:0.78rem;
   font-weight:500;
-  letter-spacing:0.08em;
+  letter-spacing:0.1em;
   text-transform:uppercase;
   color:var(--muted);
 }
 
 /* ── PROJECTS ── */
-#projects{background:var(--white);}
+#projects{background:var(--bg);}
 .project-row{
   border-top:1px solid var(--border);
-  padding:2rem 0;
+  padding:1.75rem 0;
   display:grid;
   grid-template-columns:80px 1fr auto;
   gap:2rem;
@@ -386,10 +427,11 @@ blockquote{
   transition:background 0.15s;
 }
 .project-row:last-child{border-bottom:1px solid var(--border);}
-.project-row:hover{background:var(--bg);}
+.project-row:hover{background:var(--bg2);}
 .project-num{
   font-family:var(--serif);
-  font-size:2rem;
+  font-weight:700;
+  font-size:1.85rem;
   color:var(--border);
   line-height:1;
   transition:color 0.2s;
@@ -397,8 +439,8 @@ blockquote{
 }
 .project-row:hover .project-num,
 .project-row.open .project-num{color:var(--navy);}
-.project-meta{}
 .project-title{
+  font-family:var(--serif);
   font-size:1rem;
   font-weight:600;
   color:var(--ink);
@@ -406,9 +448,9 @@ blockquote{
   margin-bottom:0.3rem;
 }
 .project-tag{
-  font-size:0.72rem;
+  font-size:0.7rem;
   font-weight:500;
-  letter-spacing:0.08em;
+  letter-spacing:0.1em;
   text-transform:uppercase;
   color:var(--navy);
 }
@@ -427,18 +469,14 @@ blockquote{
   border-color:var(--navy);
   color:var(--navy);
 }
-.project-row.open .project-chevron svg{
-  transform:rotate(45deg);
-}
+.project-row.open .project-chevron svg{transform:rotate(45deg);}
 .project-chevron svg{transition:transform 0.25s;}
 .project-body{
   grid-column:2/-1;
   max-height:0;overflow:hidden;
   transition:max-height 0.4s ease;
 }
-.project-body-inner{
-  padding-bottom:1rem;
-}
+.project-body-inner{padding-bottom:1rem;}
 .project-desc{
   font-size:0.875rem;
   color:var(--mid);
@@ -471,8 +509,7 @@ blockquote{
   display:block;
   max-width:560px;
 }
-.contact-left h2{margin-bottom:1rem;}
-.contact-left p{
+.contact-grid p{
   font-size:1rem;color:var(--mid);
   max-width:420px;line-height:1.75;
 }
@@ -488,24 +525,6 @@ blockquote{
   transition:border-color 0.2s,color 0.2s;
 }
 .contact-link:hover{border-color:var(--navy);color:var(--navy);}
-.contact-right{
-  display:flex;flex-direction:column;gap:2rem;
-}
-.stat-item{}
-.stat-num{
-  font-family:var(--serif);
-  font-size:3rem;
-  color:var(--navy);
-  line-height:1;
-}
-.stat-label{
-  font-size:0.8rem;
-  font-weight:500;
-  letter-spacing:0.06em;
-  text-transform:uppercase;
-  color:var(--muted);
-  margin-top:0.25rem;
-}
 
 /* ── FOOTER ── */
 footer{
@@ -517,10 +536,10 @@ footer{
 }
 footer p{
   font-size:0.78rem;
-  color:rgba(255,255,255,0.35);
+  color:rgba(255,255,255,0.45);
 }
 
-/* ── REVEAL ANIMATIONS ── */
+/* ── REVEAL ── */
 .reveal{
   opacity:0;
   transform:translateY(28px);
@@ -538,17 +557,16 @@ footer p{
   .comp-item:nth-child(2){border-right:none;}
   .comp-item:nth-child(1),
   .comp-item:nth-child(2){border-bottom:1px solid var(--border);}
-  .contact-grid{grid-template-columns:1fr;}
 }
 @media(max-width:720px){
   .hero-grid{grid-template-columns:1fr;}
-  .hero-photo-wrap{order:-1;max-width:260px;}
+  .hero-photo-wrap{order:-1;max-width:240px;margin:0 auto;}
   .comp-list{grid-template-columns:1fr;}
   .comp-item{border-right:none;border-bottom:1px solid var(--border);}
   .comp-item:last-child{border-bottom:none;}
   .meta-row{grid-template-columns:1fr;}
   .project-row{grid-template-columns:48px 1fr auto;gap:1rem;}
-  .nav-links{display:none;}
+  .nav-links,.lang-switcher{display:none;}
   .hamburger{display:flex;}
   .cta-strip-inner{flex-direction:column;align-items:flex-start;}
 }
@@ -561,21 +579,37 @@ footer p{
 <!-- NAV -->
 <nav id="nav">
   <a href="#hero" class="nav-logo">KK</a>
-  <ul class="nav-links">
-    <li><a href="#hero">Profil</a></li>
-    <li><a href="#competencies">Kompetenzen</a></li>
-    <li><a href="#projects">Projekte</a></li>
-    <li><a href="#contact">Kontakt</a></li>
-  </ul>
-  <button class="hamburger" id="hamburger" aria-label="Menü">
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#hero" data-i18n="nav.profile">Profil</a></li>
+      <li><a href="#competencies" data-i18n="nav.competencies">Kompetenzen</a></li>
+      <li><a href="#projects" data-i18n="nav.projects">Projekte</a></li>
+      <li><a href="#contact" data-i18n="nav.contact">Kontakt</a></li>
+    </ul>
+    <div class="lang-switcher">
+      <button class="lang-btn active" data-lang="de">DE</button>
+      <span class="lang-sep">·</span>
+      <button class="lang-btn" data-lang="en">EN</button>
+      <span class="lang-sep">·</span>
+      <button class="lang-btn" data-lang="el">EL</button>
+    </div>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
 <div class="mob-menu" id="mob-menu">
-  <a href="#hero">Profil</a>
-  <a href="#competencies">Kompetenzen</a>
-  <a href="#projects">Projekte</a>
-  <a href="#contact">Kontakt</a>
+  <a href="#hero" data-i18n="nav.profile">Profil</a>
+  <a href="#competencies" data-i18n="nav.competencies">Kompetenzen</a>
+  <a href="#projects" data-i18n="nav.projects">Projekte</a>
+  <a href="#contact" data-i18n="nav.contact">Kontakt</a>
+  <div class="mob-langs">
+    <button class="lang-btn active" data-lang="de">DE</button>
+    <span class="lang-sep">·</span>
+    <button class="lang-btn" data-lang="en">EN</button>
+    <span class="lang-sep">·</span>
+    <button class="lang-btn" data-lang="el">EL</button>
+  </div>
 </div>
 
 <!-- HERO -->
@@ -584,22 +618,22 @@ footer p{
     <div>
       <div class="hero-eyebrow reveal">
         <span class="hero-eyebrow-line"></span>
-        <span>Interim Project &amp; Operations Manager</span>
+        <span data-i18n="hero.eyebrow">Interim Project &amp; Operations Manager</span>
       </div>
-      <h1 class="hero-name reveal reveal-delay-1">Konstantinos<br>Koutsomito&shy;poulos</h1>
-      <p class="hero-role reveal reveal-delay-2">Improve. Reduce. Build.</p>
+      <h1 class="hero-name reveal reveal-delay-1">Konstantinos<br><span class="surname">Koutsomitopoulos</span></h1>
+      <p class="hero-role reveal reveal-delay-2" data-i18n="hero.role">Improve. Reduce. Build.</p>
       <div class="hero-bio reveal reveal-delay-2">
-        <p>Projektmanager und Transformationsberater mit wirtschaftswissenschaftlichem Hintergrund und operativer Expertise in der Automobil- und Intralogistikbranche.</p>
-        <p>Analytisch, strukturiert, lösungsorientiert – vom Krisenmanagement bis zur nachhaltigen Prozessoptimierung.</p>
+        <p data-i18n="hero.bio1">Projektmanager und Transformationsberater mit wirtschaftswissenschaftlichem Hintergrund und operativer Expertise in der Automobil- und Intralogistikbranche.</p>
+        <p data-i18n="hero.bio2">Analytisch, strukturiert, lösungsorientiert – vom Krisenmanagement bis zur nachhaltigen Prozessoptimierung.</p>
       </div>
       <div class="hero-actions reveal reveal-delay-3">
-        <a href="#projects" class="btn btn-dark">Referenzprojekte</a>
-        <a href="#contact" class="btn btn-outline">Kontakt aufnehmen</a>
+        <a href="#projects" class="btn btn-dark" data-i18n="hero.btnProjects">Referenzprojekte</a>
+        <a href="#contact" class="btn btn-outline" data-i18n="hero.btnContact">Kontakt aufnehmen</a>
       </div>
     </div>
     <div class="hero-photo-wrap reveal reveal-delay-1">
       <img src="https://github.com/CptKouts/CptKouts.github.io/blob/main/20210601_EFS_669.jpg?raw=true" alt="Konstantinos Koutsomitopoulos" class="hero-photo">
-      <p class="hero-photo-caption">Wien, Österreich</p>
+      <p class="hero-photo-caption" data-i18n="hero.caption">Wien, Österreich</p>
     </div>
   </div>
 </section>
@@ -623,45 +657,45 @@ footer p{
 </div>
 
 <!-- COMPETENCIES -->
-<section id="competencies" class="alt">
+<section id="competencies">
   <div class="wrap">
-    <div class="overline reveal">Expertise</div>
-    <h2 class="section-title reveal">Was ich einbringe</h2>
+    <div class="overline reveal" data-i18n="comp.overline">Expertise</div>
+    <h2 class="section-title reveal" data-i18n="comp.title">Was ich einbringe</h2>
     <div class="comp-list reveal">
       <div class="comp-item">
         <div class="comp-num">01</div>
-        <h3>Operational Excellence</h3>
-        <p>Prozessoptimierung, Kostenmanagement und Effizienzsteigerung in Produktion und Logistik.</p>
+        <h3 data-i18n="comp.c1.title">Operational Excellence</h3>
+        <p data-i18n="comp.c1.desc">Prozessoptimierung, Kostenmanagement und Effizienzsteigerung in Produktion und Logistik.</p>
       </div>
       <div class="comp-item">
         <div class="comp-num">02</div>
-        <h3>Transformation &amp; Stabilisierung</h3>
-        <p>Begleitung von Organisationsänderungen, Standortverlagerungen und Krisenmanagement.</p>
+        <h3 data-i18n="comp.c2.title">Transformation &amp; Stabilisierung</h3>
+        <p data-i18n="comp.c2.desc">Begleitung von Organisationsänderungen, Standortverlagerungen und Krisenmanagement.</p>
       </div>
       <div class="comp-item">
         <div class="comp-num">03</div>
-        <h3>PMO &amp; Governance</h3>
-        <p>Reporting-Landschaften, KPI-Systeme und Rollenmodelle (RACI) für klare Verantwortlichkeiten.</p>
+        <h3 data-i18n="comp.c3.title">PMO &amp; Governance</h3>
+        <p data-i18n="comp.c3.desc">Reporting-Landschaften, KPI-Systeme und Rollenmodelle (RACI) für klare Verantwortlichkeiten.</p>
       </div>
       <div class="comp-item">
         <div class="comp-num">04</div>
-        <h3>Qualitätsmanagement</h3>
-        <p>On-Site-Audits und Prozessabsicherung nach VDA 6.3 und PPAP-Standard.</p>
+        <h3 data-i18n="comp.c4.title">Qualitätsmanagement</h3>
+        <p data-i18n="comp.c4.desc">On-Site-Audits und Prozessabsicherung nach VDA 6.3 und PPAP-Standard.</p>
       </div>
     </div>
     <div class="meta-row reveal">
       <div class="meta-block">
-        <h4>Zertifizierungen</h4>
+        <h4 data-i18n="meta.certs">Zertifizierungen</h4>
         <ul>
           <li>VDA 6.3</li>
           <li>Scrum Master</li>
         </ul>
       </div>
       <div class="meta-block">
-        <h4>Sprachen</h4>
+        <h4 data-i18n="meta.langs">Sprachen</h4>
         <ul>
-          <li>Deutsch – Muttersprache</li>
-          <li>Englisch – Verhandlungssicher</li>
+          <li data-i18n="meta.lang1">Deutsch – Muttersprache</li>
+          <li data-i18n="meta.lang2">Englisch – Verhandlungssicher</li>
         </ul>
       </div>
     </div>
@@ -671,8 +705,8 @@ footer p{
 <!-- CTA STRIP 1 -->
 <div class="cta-strip">
   <div class="cta-strip-inner">
-    <p>Zu viele offene Baustellen, zu wenig Struktur – und der Druck wächst?</p>
-    <a href="#contact" class="btn btn-light">Gespräch vereinbaren</a>
+    <p data-i18n="cta1.text">Zu viele offene Baustellen, zu wenig Struktur – und der Druck wächst?</p>
+    <a href="#contact" class="btn btn-light" data-i18n="cta1.btn">Gespräch vereinbaren</a>
   </div>
 </div>
 
@@ -681,10 +715,10 @@ footer p{
   <div class="wrap">
     <div class="testimonial-inner reveal">
       <span class="quote-mark">"</span>
-      <blockquote>
+      <blockquote data-i18n="testimonial.quote">
         Die Zusammenarbeit war von Anfang an unkompliziert, klar in der Kommunikation und strukturiert im Vorgehen. Besonders wertvoll war, dass er es geschafft hat, unterschiedlichste Perspektiven zusammenzubringen und daraus etwas Konkretes zu machen – eine klare Positionierung nach außen, sinnvolle Strukturen nach innen und Abläufe, die im Alltag wirklich helfen.
       </blockquote>
-      <p class="testimonial-attr">— Referenz eines Kunden</p>
+      <p class="testimonial-attr" data-i18n="testimonial.attr">— Referenz eines Kunden</p>
     </div>
   </div>
 </section>
@@ -692,28 +726,26 @@ footer p{
 <!-- PROJECTS -->
 <section id="projects">
   <div class="wrap">
-    <div class="overline reveal">Erfahrung</div>
-    <h2 class="section-title reveal">Referenzprojekte</h2>
+    <div class="overline reveal" data-i18n="projects.overline">Erfahrung</div>
+    <h2 class="section-title reveal" data-i18n="projects.title">Referenzprojekte</h2>
 
     <div class="project-row reveal" tabindex="0" role="button" aria-expanded="false">
       <div class="project-num">01</div>
-      <div class="project-meta">
-        <p class="project-title">Ganzheitliche Professionalisierung der Organisationsstruktur und operativen Prozesse</p>
-        <p class="project-tag">Organisationstransformation</p>
+      <div>
+        <p class="project-title" data-i18n="p1.title">Ganzheitliche Professionalisierung der Organisationsstruktur und operativen Prozesse</p>
+        <p class="project-tag" data-i18n="p1.tag">Organisationstransformation</p>
       </div>
       <div class="project-chevron">
-        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
-          <line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/>
-        </svg>
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg>
       </div>
       <div class="project-body">
         <div class="project-body-inner">
-          <p class="project-desc">Verantwortung der schrittweisen Transformation der Unternehmensprozesse – von der strategischen Personalplanung bis zur operativen Kostenoptimierung im Kernbetrieb.</p>
+          <p class="project-desc" data-i18n="p1.desc">Verantwortung der schrittweisen Transformation der Unternehmensprozesse – von der strategischen Personalplanung bis zur operativen Kostenoptimierung im Kernbetrieb.</p>
           <ul class="project-points">
-            <li><strong>Organisationsdesign:</strong> Neudefinition der Teamstrukturen und Implementierung von Rollenmodellen (RACI).</li>
-            <li><strong>Management-Systeme:</strong> Strukturierte Kommunikationsroutinen und Eskalationsmechanismen.</li>
-            <li><strong>Effizienzsteigerung:</strong> Kapazitäts- und Kostenanalysen im Werkstattbetrieb.</li>
-            <li><strong>Digitalisierung:</strong> Überführung analoger Abläufe in digitale Workflows und Governance-Frameworks.</li>
+            <li data-i18n="p1.b1"><strong>Organisationsdesign:</strong> Neudefinition der Teamstrukturen und Implementierung von Rollenmodellen (RACI).</li>
+            <li data-i18n="p1.b2"><strong>Management-Systeme:</strong> Strukturierte Kommunikationsroutinen und Eskalationsmechanismen.</li>
+            <li data-i18n="p1.b3"><strong>Effizienzsteigerung:</strong> Kapazitäts- und Kostenanalysen im Werkstattbetrieb.</li>
+            <li data-i18n="p1.b4"><strong>Digitalisierung:</strong> Überführung analoger Abläufe in digitale Workflows und Governance-Frameworks.</li>
           </ul>
         </div>
       </div>
@@ -721,23 +753,21 @@ footer p{
 
     <div class="project-row reveal" tabindex="0" role="button" aria-expanded="false">
       <div class="project-num">02</div>
-      <div class="project-meta">
-        <p class="project-title">Interim Taskforce Management &amp; Verlagerungssteuerung</p>
-        <p class="project-tag">Automotive</p>
+      <div>
+        <p class="project-title" data-i18n="p2.title">Interim Taskforce Management &amp; Verlagerungssteuerung</p>
+        <p class="project-tag" data-i18n="p2.tag">Automotive</p>
       </div>
       <div class="project-chevron">
-        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
-          <line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/>
-        </svg>
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg>
       </div>
       <div class="project-body">
         <div class="project-body-inner">
           <ul class="project-points">
-            <li><strong>Verlagerungssteuerung:</strong> Standortverlagerung eines strategischen Zulieferers inkl. Aufgaben-Tracking zur Sicherstellung der OEM-Anforderungen.</li>
-            <li><strong>Supply Chain Monitoring:</strong> Tägliches Produktions-Monitoring und Bestandsübersichten auf Sachnummernebene.</li>
-            <li><strong>Krisenmanagement:</strong> Notfallkonzepte zur Versorgungsabsicherung über alternative Standorte.</li>
-            <li><strong>Schnittstellenmanagement:</strong> Zentrale Funktion zwischen Zulieferer und OEM-Supplier-Management.</li>
-            <li><strong>On-Site Qualitätsabsicherung:</strong> Vor-Ort-Besuche zur Verifizierung der Lieferfähigkeit.</li>
+            <li data-i18n="p2.b1"><strong>Verlagerungssteuerung:</strong> Standortverlagerung eines strategischen Zulieferers inkl. Aufgaben-Tracking zur Sicherstellung der OEM-Anforderungen.</li>
+            <li data-i18n="p2.b2"><strong>Supply Chain Monitoring:</strong> Tägliches Produktions-Monitoring und Bestandsübersichten auf Sachnummernebene.</li>
+            <li data-i18n="p2.b3"><strong>Krisenmanagement:</strong> Notfallkonzepte zur Versorgungsabsicherung über alternative Standorte.</li>
+            <li data-i18n="p2.b4"><strong>Schnittstellenmanagement:</strong> Zentrale Funktion zwischen Zulieferer und OEM-Supplier-Management.</li>
+            <li data-i18n="p2.b5"><strong>On-Site Qualitätsabsicherung:</strong> Vor-Ort-Besuche zur Verifizierung der Lieferfähigkeit.</li>
           </ul>
         </div>
       </div>
@@ -745,20 +775,18 @@ footer p{
 
     <div class="project-row reveal" tabindex="0" role="button" aria-expanded="false">
       <div class="project-num">03</div>
-      <div class="project-meta">
-        <p class="project-title">Supply Chain Stabilisierung &amp; Ramp-up Management</p>
-        <p class="project-tag">German Automotive OEM</p>
+      <div>
+        <p class="project-title" data-i18n="p3.title">Supply Chain Stabilisierung &amp; Ramp-up Management</p>
+        <p class="project-tag" data-i18n="p3.tag">German Automotive OEM</p>
       </div>
       <div class="project-chevron">
-        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
-          <line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/>
-        </svg>
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg>
       </div>
       <div class="project-body">
         <div class="project-body-inner">
           <ul class="project-points">
-            <li>Stabilisierung der Lieferkette während der Prototypenphase direkt vor Ort beim kritischen Zulieferer.</li>
-            <li>Planung und Steuerung des Serienanlaufs inkl. On-Site PPAP-Audits und Kommunikationsmanagement.</li>
+            <li data-i18n="p3.b1">Stabilisierung der Lieferkette während der Prototypenphase direkt vor Ort beim kritischen Zulieferer.</li>
+            <li data-i18n="p3.b2">Planung und Steuerung des Serienanlaufs inkl. On-Site PPAP-Audits und Kommunikationsmanagement.</li>
           </ul>
         </div>
       </div>
@@ -766,20 +794,18 @@ footer p{
 
     <div class="project-row reveal" tabindex="0" role="button" aria-expanded="false">
       <div class="project-num">04</div>
-      <div class="project-meta">
-        <p class="project-title">Varianz- und Komplexitätsmanagement</p>
-        <p class="project-tag">Internationaler Intralogistik OEM</p>
+      <div>
+        <p class="project-title" data-i18n="p4.title">Varianz- und Komplexitätsmanagement</p>
+        <p class="project-tag" data-i18n="p4.tag">Internationaler Intralogistik OEM</p>
       </div>
       <div class="project-chevron">
-        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
-          <line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/>
-        </svg>
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg>
       </div>
       <div class="project-body">
         <div class="project-body-inner">
           <ul class="project-points">
-            <li>Optimierung des Produktportfolios in Neuprojekten und laufender Serienfertigung.</li>
-            <li>Analyse technischer Abhängigkeiten und Definition von Prozessen zur Variantenreduzierung über verschiedene Marken hinweg.</li>
+            <li data-i18n="p4.b1">Optimierung des Produktportfolios in Neuprojekten und laufender Serienfertigung.</li>
+            <li data-i18n="p4.b2">Analyse technischer Abhängigkeiten und Definition von Prozessen zur Variantenreduzierung über verschiedene Marken hinweg.</li>
           </ul>
         </div>
       </div>
@@ -787,19 +813,17 @@ footer p{
 
     <div class="project-row reveal" tabindex="0" role="button" aria-expanded="false">
       <div class="project-num">05</div>
-      <div class="project-meta">
-        <p class="project-title">Implementation of IT Asset Management</p>
-        <p class="project-tag">Automotive Software</p>
+      <div>
+        <p class="project-title" data-i18n="p5.title">Implementation of IT Asset Management</p>
+        <p class="project-tag" data-i18n="p5.tag">Automotive Software</p>
       </div>
       <div class="project-chevron">
-        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
-          <line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/>
-        </svg>
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg>
       </div>
       <div class="project-body">
         <div class="project-body-inner">
           <ul class="project-points">
-            <li>Entwicklung und Implementierung eines Governance-Frameworks inkl. Rollen und Prozeduren zur Einhaltung von Informationssicherheits-Richtlinien.</li>
+            <li data-i18n="p5.b1">Entwicklung und Implementierung eines Governance-Frameworks inkl. Rollen und Prozeduren zur Einhaltung von Informationssicherheits-Richtlinien.</li>
           </ul>
         </div>
       </div>
@@ -807,20 +831,18 @@ footer p{
 
     <div class="project-row reveal" tabindex="0" role="button" aria-expanded="false">
       <div class="project-num">06</div>
-      <div class="project-meta">
-        <p class="project-title">Supply Chain Cost Transparency Project</p>
-        <p class="project-tag">German Automotive OEM</p>
+      <div>
+        <p class="project-title" data-i18n="p6.title">Supply Chain Cost Transparency Project</p>
+        <p class="project-tag" data-i18n="p6.tag">German Automotive OEM</p>
       </div>
       <div class="project-chevron">
-        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
-          <line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/>
-        </svg>
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg>
       </div>
       <div class="project-body">
         <div class="project-body-inner">
           <ul class="project-points">
-            <li>Einführung einer Reporting-Logik und KPI-Landschaft zur standortübergreifenden Kostentransparenz.</li>
-            <li>Optimierung von Prozessabläufen zur signifikanten Reduzierung von Sonderfrachtkosten.</li>
+            <li data-i18n="p6.b1">Einführung einer Reporting-Logik und KPI-Landschaft zur standortübergreifenden Kostentransparenz.</li>
+            <li data-i18n="p6.b2">Optimierung von Prozessabläufen zur signifikanten Reduzierung von Sonderfrachtkosten.</li>
           </ul>
         </div>
       </div>
@@ -828,20 +850,18 @@ footer p{
 
     <div class="project-row reveal" tabindex="0" role="button" aria-expanded="false">
       <div class="project-num">07</div>
-      <div class="project-meta">
-        <p class="project-title">Management Support Pre- &amp; Post-Acquisition</p>
-        <p class="project-tag">UK / French Automotive OEM</p>
+      <div>
+        <p class="project-title" data-i18n="p7.title">Management Support Pre- &amp; Post-Acquisition</p>
+        <p class="project-tag" data-i18n="p7.tag">UK / French Automotive OEM</p>
       </div>
       <div class="project-chevron">
-        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
-          <line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/>
-        </svg>
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg>
       </div>
       <div class="project-body">
         <div class="project-body-inner">
           <ul class="project-points">
-            <li>Review von Unternehmensdokumenten auf „Red Flags" und Erstellung von Management-Summaries für Verhandlungen mit Ministerien.</li>
-            <li>Risikobewertung der Belegschaft und Incentive-Modelle zur Sicherung von strategischem Know-how.</li>
+            <li data-i18n="p7.b1">Review von Unternehmensdokumenten auf „Red Flags" und Erstellung von Management-Summaries für Verhandlungen mit Ministerien.</li>
+            <li data-i18n="p7.b2">Risikobewertung der Belegschaft und Incentive-Modelle zur Sicherung von strategischem Know-how.</li>
           </ul>
         </div>
       </div>
@@ -849,20 +869,18 @@ footer p{
 
     <div class="project-row reveal" tabindex="0" role="button" aria-expanded="false">
       <div class="project-num">08</div>
-      <div class="project-meta">
-        <p class="project-title">Cost Down Projekte &amp; Wirtschaftlichkeitsstudien</p>
-        <p class="project-tag">UK Automotive OEM</p>
+      <div>
+        <p class="project-title" data-i18n="p8.title">Cost Down Projekte &amp; Wirtschaftlichkeitsstudien</p>
+        <p class="project-tag" data-i18n="p8.tag">UK Automotive OEM</p>
       </div>
       <div class="project-chevron">
-        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
-          <line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/>
-        </svg>
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg>
       </div>
       <div class="project-body">
         <div class="project-body-inner">
           <ul class="project-points">
-            <li>Analyse von Ist-Kosten und Definition von Einsparungszielen für neu erworbene Produktionsstandorte.</li>
-            <li>Technische Machbarkeit und Kostenstrukturen für neue Fahrzeugprojekte unter Berücksichtigung internationaler Gesetzgebung.</li>
+            <li data-i18n="p8.b1">Analyse von Ist-Kosten und Definition von Einsparungszielen für neu erworbene Produktionsstandorte.</li>
+            <li data-i18n="p8.b2">Technische Machbarkeit und Kostenstrukturen für neue Fahrzeugprojekte unter Berücksichtigung internationaler Gesetzgebung.</li>
           </ul>
         </div>
       </div>
@@ -874,24 +892,22 @@ footer p{
 <!-- CTA STRIP 2 -->
 <div class="cta-strip">
   <div class="cta-strip-inner">
-    <p>Bereit für Ihr nächstes Transformationsprojekt?</p>
-    <a href="#contact" class="btn btn-light">Jetzt Kontakt aufnehmen</a>
+    <p data-i18n="cta2.text">Bereit für Ihr nächstes Transformationsprojekt?</p>
+    <a href="#contact" class="btn btn-light" data-i18n="cta2.btn">Jetzt Kontakt aufnehmen</a>
   </div>
 </div>
 
 <!-- CONTACT -->
 <section id="contact">
   <div class="wrap">
-    <div class="contact-grid">
-      <div class="contact-left reveal">
-        <div class="overline">Kontakt</div>
-        <h2 class="section-title">Zusammenarbeit anfragen</h2>
-        <p>Interesse an einer Zusammenarbeit? Ich freue mich über Ihre Nachricht – unkompliziert und direkt.</p>
-        <a href="https://www.linkedin.com/in/konstantinos-koutsomitopoulos" target="_blank" rel="noopener noreferrer" class="contact-link">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          LinkedIn-Profil aufrufen
-        </a>
-      </div>
+    <div class="contact-grid reveal">
+      <div class="overline" data-i18n="contact.overline">Kontakt</div>
+      <h2 class="section-title" data-i18n="contact.title">Zusammenarbeit anfragen</h2>
+      <p data-i18n="contact.desc">Interesse an einer Zusammenarbeit? Ich freue mich über Ihre Nachricht – unkompliziert und direkt.</p>
+      <a href="https://www.linkedin.com/in/konstantinos-koutsomitopoulos" target="_blank" rel="noopener noreferrer" class="contact-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        <span data-i18n="contact.link">LinkedIn-Profil aufrufen</span>
+      </a>
     </div>
   </div>
 </section>
@@ -899,10 +915,281 @@ footer p{
 <!-- FOOTER -->
 <footer>
   <p>&copy; 2025 Konstantinos Koutsomitopoulos</p>
-  <p>Wien, Österreich</p>
+  <p data-i18n="footer.location">Wien, Österreich</p>
 </footer>
 
 <script>
+// ── Translations ──
+const T = {
+  de: {
+    'nav.profile': 'Profil',
+    'nav.competencies': 'Kompetenzen',
+    'nav.projects': 'Projekte',
+    'nav.contact': 'Kontakt',
+    'hero.eyebrow': 'Interim Project &amp; Operations Manager',
+    'hero.role': 'Improve. Reduce. Build.',
+    'hero.bio1': 'Projektmanager und Transformationsberater mit wirtschaftswissenschaftlichem Hintergrund und operativer Expertise in der Automobil- und Intralogistikbranche.',
+    'hero.bio2': 'Analytisch, strukturiert, lösungsorientiert – vom Krisenmanagement bis zur nachhaltigen Prozessoptimierung.',
+    'hero.btnProjects': 'Referenzprojekte',
+    'hero.btnContact': 'Kontakt aufnehmen',
+    'hero.caption': 'Wien, Österreich',
+    'comp.overline': 'Expertise',
+    'comp.title': 'Was ich einbringe',
+    'comp.c1.title': 'Operational Excellence',
+    'comp.c1.desc': 'Prozessoptimierung, Kostenmanagement und Effizienzsteigerung in Produktion und Logistik.',
+    'comp.c2.title': 'Transformation &amp; Stabilisierung',
+    'comp.c2.desc': 'Begleitung von Organisationsänderungen, Standortverlagerungen und Krisenmanagement.',
+    'comp.c3.title': 'PMO &amp; Governance',
+    'comp.c3.desc': 'Reporting-Landschaften, KPI-Systeme und Rollenmodelle (RACI) für klare Verantwortlichkeiten.',
+    'comp.c4.title': 'Qualitätsmanagement',
+    'comp.c4.desc': 'On-Site-Audits und Prozessabsicherung nach VDA 6.3 und PPAP-Standard.',
+    'meta.certs': 'Zertifizierungen',
+    'meta.langs': 'Sprachen',
+    'meta.lang1': 'Deutsch – Muttersprache',
+    'meta.lang2': 'Englisch – Verhandlungssicher',
+    'cta1.text': 'Zu viele offene Baustellen, zu wenig Struktur – und der Druck wächst?',
+    'cta1.btn': 'Gespräch vereinbaren',
+    'testimonial.quote': 'Die Zusammenarbeit war von Anfang an unkompliziert, klar in der Kommunikation und strukturiert im Vorgehen. Besonders wertvoll war, dass er es geschafft hat, unterschiedlichste Perspektiven zusammenzubringen und daraus etwas Konkretes zu machen – eine klare Positionierung nach außen, sinnvolle Strukturen nach innen und Abläufe, die im Alltag wirklich helfen.',
+    'testimonial.attr': '— Referenz eines Kunden',
+    'projects.overline': 'Erfahrung',
+    'projects.title': 'Referenzprojekte',
+    'p1.title': 'Ganzheitliche Professionalisierung der Organisationsstruktur und operativen Prozesse',
+    'p1.tag': 'Organisationstransformation',
+    'p1.desc': 'Verantwortung der schrittweisen Transformation der Unternehmensprozesse – von der strategischen Personalplanung bis zur operativen Kostenoptimierung im Kernbetrieb.',
+    'p1.b1': '<strong>Organisationsdesign:</strong> Neudefinition der Teamstrukturen und Implementierung von Rollenmodellen (RACI).',
+    'p1.b2': '<strong>Management-Systeme:</strong> Strukturierte Kommunikationsroutinen und Eskalationsmechanismen.',
+    'p1.b3': '<strong>Effizienzsteigerung:</strong> Kapazitäts- und Kostenanalysen im Werkstattbetrieb.',
+    'p1.b4': '<strong>Digitalisierung:</strong> Überführung analoger Abläufe in digitale Workflows und Governance-Frameworks.',
+    'p2.title': 'Interim Taskforce Management &amp; Verlagerungssteuerung',
+    'p2.tag': 'Automotive',
+    'p2.b1': '<strong>Verlagerungssteuerung:</strong> Standortverlagerung eines strategischen Zulieferers inkl. Aufgaben-Tracking zur Sicherstellung der OEM-Anforderungen.',
+    'p2.b2': '<strong>Supply Chain Monitoring:</strong> Tägliches Produktions-Monitoring und Bestandsübersichten auf Sachnummernebene.',
+    'p2.b3': '<strong>Krisenmanagement:</strong> Notfallkonzepte zur Versorgungsabsicherung über alternative Standorte.',
+    'p2.b4': '<strong>Schnittstellenmanagement:</strong> Zentrale Funktion zwischen Zulieferer und OEM-Supplier-Management.',
+    'p2.b5': '<strong>On-Site Qualitätsabsicherung:</strong> Vor-Ort-Besuche zur Verifizierung der Lieferfähigkeit.',
+    'p3.title': 'Supply Chain Stabilisierung &amp; Ramp-up Management',
+    'p3.tag': 'German Automotive OEM',
+    'p3.b1': 'Stabilisierung der Lieferkette während der Prototypenphase direkt vor Ort beim kritischen Zulieferer.',
+    'p3.b2': 'Planung und Steuerung des Serienanlaufs inkl. On-Site PPAP-Audits und Kommunikationsmanagement.',
+    'p4.title': 'Varianz- und Komplexitätsmanagement',
+    'p4.tag': 'Internationaler Intralogistik OEM',
+    'p4.b1': 'Optimierung des Produktportfolios in Neuprojekten und laufender Serienfertigung.',
+    'p4.b2': 'Analyse technischer Abhängigkeiten und Definition von Prozessen zur Variantenreduzierung über verschiedene Marken hinweg.',
+    'p5.title': 'Implementation of IT Asset Management',
+    'p5.tag': 'Automotive Software',
+    'p5.b1': 'Entwicklung und Implementierung eines Governance-Frameworks inkl. Rollen und Prozeduren zur Einhaltung von Informationssicherheits-Richtlinien.',
+    'p6.title': 'Supply Chain Cost Transparency Project',
+    'p6.tag': 'German Automotive OEM',
+    'p6.b1': 'Einführung einer Reporting-Logik und KPI-Landschaft zur standortübergreifenden Kostentransparenz.',
+    'p6.b2': 'Optimierung von Prozessabläufen zur signifikanten Reduzierung von Sonderfrachtkosten.',
+    'p7.title': 'Management Support Pre- &amp; Post-Acquisition',
+    'p7.tag': 'UK / French Automotive OEM',
+    'p7.b1': 'Review von Unternehmensdokumenten auf „Red Flags" und Erstellung von Management-Summaries für Verhandlungen mit Ministerien.',
+    'p7.b2': 'Risikobewertung der Belegschaft und Incentive-Modelle zur Sicherung von strategischem Know-how.',
+    'p8.title': 'Cost Down Projekte &amp; Wirtschaftlichkeitsstudien',
+    'p8.tag': 'UK Automotive OEM',
+    'p8.b1': 'Analyse von Ist-Kosten und Definition von Einsparungszielen für neu erworbene Produktionsstandorte.',
+    'p8.b2': 'Technische Machbarkeit und Kostenstrukturen für neue Fahrzeugprojekte unter Berücksichtigung internationaler Gesetzgebung.',
+    'cta2.text': 'Bereit für Ihr nächstes Transformationsprojekt?',
+    'cta2.btn': 'Jetzt Kontakt aufnehmen',
+    'contact.overline': 'Kontakt',
+    'contact.title': 'Zusammenarbeit anfragen',
+    'contact.desc': 'Interesse an einer Zusammenarbeit? Ich freue mich über Ihre Nachricht – unkompliziert und direkt.',
+    'contact.link': 'LinkedIn-Profil aufrufen',
+    'footer.location': 'Wien, Österreich'
+  },
+  en: {
+    'nav.profile': 'Profile',
+    'nav.competencies': 'Competencies',
+    'nav.projects': 'Projects',
+    'nav.contact': 'Contact',
+    'hero.eyebrow': 'Interim Project &amp; Operations Manager',
+    'hero.role': 'Improve. Reduce. Build.',
+    'hero.bio1': 'Project manager and transformation consultant with a background in economics and operational expertise in the automotive and intralogistics industries.',
+    'hero.bio2': 'Analytical, structured, solution-oriented – from crisis management to sustainable process optimization.',
+    'hero.btnProjects': 'Reference Projects',
+    'hero.btnContact': 'Get in Touch',
+    'hero.caption': 'Vienna, Austria',
+    'comp.overline': 'Expertise',
+    'comp.title': 'What I Bring',
+    'comp.c1.title': 'Operational Excellence',
+    'comp.c1.desc': 'Process optimization, cost management and efficiency improvement in production and logistics.',
+    'comp.c2.title': 'Transformation &amp; Stabilization',
+    'comp.c2.desc': 'Supporting organizational change, site relocations and crisis management.',
+    'comp.c3.title': 'PMO &amp; Governance',
+    'comp.c3.desc': 'Reporting landscapes, KPI systems and role models (RACI) for clear accountability.',
+    'comp.c4.title': 'Quality Management',
+    'comp.c4.desc': 'On-site audits and process assurance per VDA 6.3 and PPAP standards.',
+    'meta.certs': 'Certifications',
+    'meta.langs': 'Languages',
+    'meta.lang1': 'German – Native',
+    'meta.lang2': 'English – Fluent',
+    'cta1.text': 'Too many open issues, too little structure – and the pressure keeps rising?',
+    'cta1.btn': 'Schedule a Call',
+    'testimonial.quote': 'The collaboration was uncomplicated from the start, with clear communication and a structured approach. What was particularly valuable was his ability to bring together very different perspectives and turn them into something concrete – a clear external positioning, meaningful internal structures, and processes that genuinely help in daily operations.',
+    'testimonial.attr': '— Client reference',
+    'projects.overline': 'Experience',
+    'projects.title': 'Reference Projects',
+    'p1.title': 'End-to-End Professionalization of Organizational Structure and Operational Processes',
+    'p1.tag': 'Organizational Transformation',
+    'p1.desc': 'Responsibility for the gradual transformation of business processes – from strategic workforce planning to operational cost optimization in the core business.',
+    'p1.b1': '<strong>Organizational Design:</strong> Redefining team structures and implementing role models (RACI).',
+    'p1.b2': '<strong>Management Systems:</strong> Structured communication routines and escalation mechanisms.',
+    'p1.b3': '<strong>Efficiency Gains:</strong> Capacity and cost analyses in workshop operations.',
+    'p1.b4': '<strong>Digitalization:</strong> Migration of analog workflows to digital and governance frameworks.',
+    'p2.title': 'Interim Taskforce Management &amp; Relocation Steering',
+    'p2.tag': 'Automotive',
+    'p2.b1': '<strong>Relocation Steering:</strong> Site relocation of a strategic supplier including task tracking to ensure OEM requirements.',
+    'p2.b2': '<strong>Supply Chain Monitoring:</strong> Daily production monitoring and transparent inventory at part-number level.',
+    'p2.b3': '<strong>Crisis Management:</strong> Contingency plans for supply assurance via alternative sites.',
+    'p2.b4': '<strong>Interface Management:</strong> Central function between supplier and OEM supplier management.',
+    'p2.b5': '<strong>On-Site Quality Assurance:</strong> On-site visits to verify delivery capability.',
+    'p3.title': 'Supply Chain Stabilization &amp; Ramp-up Management',
+    'p3.tag': 'German Automotive OEM',
+    'p3.b1': 'Stabilization of the supply chain during the prototype phase, on-site at the critical supplier.',
+    'p3.b2': 'Planning and steering of series ramp-up including on-site PPAP audits and communication management.',
+    'p4.title': 'Variance and Complexity Management',
+    'p4.tag': 'International Intralogistics OEM',
+    'p4.b1': 'Optimization of the product portfolio in new projects and ongoing series production.',
+    'p4.b2': 'Analysis of technical dependencies and definition of processes for variant reduction across brands.',
+    'p5.title': 'Implementation of IT Asset Management',
+    'p5.tag': 'Automotive Software',
+    'p5.b1': 'Development and implementation of a governance framework including roles and procedures to ensure compliance with information security policies.',
+    'p6.title': 'Supply Chain Cost Transparency Project',
+    'p6.tag': 'German Automotive OEM',
+    'p6.b1': 'Introduction of a reporting logic and KPI landscape to increase cross-site cost transparency.',
+    'p6.b2': 'Process optimization to significantly reduce special freight costs.',
+    'p7.title': 'Management Support Pre- &amp; Post-Acquisition',
+    'p7.tag': 'UK / French Automotive OEM',
+    'p7.b1': 'Review of corporate documents for "red flags" and management summaries for ministry negotiations.',
+    'p7.b2': 'Workforce risk assessment and incentive models to secure strategic know-how.',
+    'p8.title': 'Cost-Down Projects &amp; Feasibility Studies',
+    'p8.tag': 'UK Automotive OEM',
+    'p8.b1': 'Analysis of actual costs and definition of savings targets for newly acquired production sites.',
+    'p8.b2': 'Technical feasibility and cost structures for new vehicle projects under international regulations.',
+    'cta2.text': 'Ready for your next transformation project?',
+    'cta2.btn': 'Get in Touch Now',
+    'contact.overline': 'Contact',
+    'contact.title': 'Request a Collaboration',
+    'contact.desc': 'Interested in working together? I look forward to your message – uncomplicated and direct.',
+    'contact.link': 'View LinkedIn Profile',
+    'footer.location': 'Vienna, Austria'
+  },
+  el: {
+    'nav.profile': 'Προφίλ',
+    'nav.competencies': 'Δεξιότητες',
+    'nav.projects': 'Έργα',
+    'nav.contact': 'Επικοινωνία',
+    'hero.eyebrow': 'Interim Project &amp; Operations Manager',
+    'hero.role': 'Improve. Reduce. Build.',
+    'hero.bio1': 'Project Manager και σύμβουλος μετασχηματισμού με υπόβαθρο στις οικονομικές επιστήμες και επιχειρησιακή εξειδίκευση στους κλάδους της αυτοκινητοβιομηχανίας και της ενδολογιστικής.',
+    'hero.bio2': 'Αναλυτικός, δομημένος, προσανατολισμένος στη λύση – από τη διαχείριση κρίσεων έως τη βιώσιμη βελτιστοποίηση διαδικασιών.',
+    'hero.btnProjects': 'Έργα Αναφοράς',
+    'hero.btnContact': 'Επικοινωνία',
+    'hero.caption': 'Βιέννη, Αυστρία',
+    'comp.overline': 'Εξειδίκευση',
+    'comp.title': 'Τι Προσφέρω',
+    'comp.c1.title': 'Operational Excellence',
+    'comp.c1.desc': 'Βελτιστοποίηση διαδικασιών, διαχείριση κόστους και αύξηση αποδοτικότητας στην παραγωγή και logistics.',
+    'comp.c2.title': 'Μετασχηματισμός &amp; Σταθεροποίηση',
+    'comp.c2.desc': 'Υποστήριξη οργανωσιακών αλλαγών, μετεγκαταστάσεων και διαχείρισης κρίσεων.',
+    'comp.c3.title': 'PMO &amp; Governance',
+    'comp.c3.desc': 'Δομές αναφοράς, συστήματα KPI και μοντέλα ρόλων (RACI) για σαφείς αρμοδιότητες.',
+    'comp.c4.title': 'Διαχείριση Ποιότητας',
+    'comp.c4.desc': 'On-site audits και διασφάλιση διαδικασιών κατά VDA 6.3 και PPAP.',
+    'meta.certs': 'Πιστοποιήσεις',
+    'meta.langs': 'Γλώσσες',
+    'meta.lang1': 'Γερμανικά – Μητρική',
+    'meta.lang2': 'Αγγλικά – Επαγγελματική επάρκεια',
+    'cta1.text': 'Πάρα πολλά ανοιχτά μέτωπα, ελάχιστη δομή – και η πίεση συνεχώς αυξάνει;',
+    'cta1.btn': 'Κλείστε ραντεβού',
+    'testimonial.quote': 'Η συνεργασία ήταν εξαρχής απλή, με σαφή επικοινωνία και δομημένη προσέγγιση. Ιδιαίτερα πολύτιμη ήταν η ικανότητά του να συνδυάζει διαφορετικές οπτικές και να τις μετατρέπει σε κάτι συγκεκριμένο – σαφή εξωτερική τοποθέτηση, ουσιαστικές εσωτερικές δομές και διαδικασίες που πραγματικά βοηθούν στην καθημερινότητα.',
+    'testimonial.attr': '— Αναφορά πελάτη',
+    'projects.overline': 'Εμπειρία',
+    'projects.title': 'Έργα Αναφοράς',
+    'p1.title': 'Συνολική Επαγγελματοποίηση Οργανωτικής Δομής και Επιχειρησιακών Διαδικασιών',
+    'p1.tag': 'Οργανωσιακός Μετασχηματισμός',
+    'p1.desc': 'Ευθύνη για τον σταδιακό μετασχηματισμό των επιχειρησιακών διαδικασιών – από τον στρατηγικό σχεδιασμό προσωπικού έως τη λειτουργική βελτιστοποίηση κόστους στον πυρήνα της επιχείρησης.',
+    'p1.b1': '<strong>Σχεδιασμός Οργανισμού:</strong> Επανακαθορισμός δομών ομάδας και εφαρμογή μοντέλων ρόλων (RACI).',
+    'p1.b2': '<strong>Συστήματα Διοίκησης:</strong> Δομημένες ρουτίνες επικοινωνίας και μηχανισμοί κλιμάκωσης.',
+    'p1.b3': '<strong>Αύξηση Αποδοτικότητας:</strong> Αναλύσεις χωρητικότητας και κόστους στις λειτουργίες συνεργείου.',
+    'p1.b4': '<strong>Ψηφιοποίηση:</strong> Μετάβαση αναλογικών διαδικασιών σε ψηφιακές ροές και πλαίσια διακυβέρνησης.',
+    'p2.title': 'Interim Διαχείριση Taskforce &amp; Καθοδήγηση Μετεγκατάστασης',
+    'p2.tag': 'Αυτοκινητοβιομηχανία',
+    'p2.b1': '<strong>Καθοδήγηση Μετεγκατάστασης:</strong> Μετεγκατάσταση τοποθεσίας στρατηγικού προμηθευτή με παρακολούθηση εργασιών για διασφάλιση των απαιτήσεων OEM.',
+    'p2.b2': '<strong>Παρακολούθηση Εφοδιαστικής Αλυσίδας:</strong> Καθημερινή παρακολούθηση παραγωγής και διαφανείς απογραφές σε επίπεδο part number.',
+    'p2.b3': '<strong>Διαχείριση Κρίσεων:</strong> Σχέδια έκτακτης ανάγκης για διασφάλιση εφοδιασμού μέσω εναλλακτικών τοποθεσιών.',
+    'p2.b4': '<strong>Διαχείριση Διεπαφών:</strong> Κεντρικός ρόλος μεταξύ προμηθευτή και OEM Supplier Management.',
+    'p2.b5': '<strong>On-Site Διασφάλιση Ποιότητας:</strong> Επιτόπιες επισκέψεις για επαλήθευση δυνατότητας παράδοσης.',
+    'p3.title': 'Σταθεροποίηση Εφοδιαστικής Αλυσίδας &amp; Διαχείριση Ramp-up',
+    'p3.tag': 'Γερμανικός OEM Αυτοκινητοβιομηχανίας',
+    'p3.b1': 'Σταθεροποίηση εφοδιαστικής αλυσίδας κατά τη φάση πρωτοτύπου, on-site στον κρίσιμο προμηθευτή.',
+    'p3.b2': 'Σχεδιασμός και καθοδήγηση εκκίνησης σειριακής παραγωγής συμπεριλαμβανομένων on-site PPAP audits και διαχείρισης επικοινωνίας.',
+    'p4.title': 'Διαχείριση Παραλλαγών και Πολυπλοκότητας',
+    'p4.tag': 'Διεθνής OEM Ενδολογιστικής',
+    'p4.b1': 'Βελτιστοποίηση χαρτοφυλακίου προϊόντων σε νέα έργα και τρέχουσα σειριακή παραγωγή.',
+    'p4.b2': 'Ανάλυση τεχνικών εξαρτήσεων και ορισμός διαδικασιών μείωσης παραλλαγών σε όλες τις μάρκες.',
+    'p5.title': 'Εφαρμογή IT Asset Management',
+    'p5.tag': 'Λογισμικό Αυτοκινητοβιομηχανίας',
+    'p5.b1': 'Ανάπτυξη και εφαρμογή πλαισίου διακυβέρνησης συμπεριλαμβανομένων ρόλων και διαδικασιών για συμμόρφωση με πολιτικές ασφάλειας πληροφοριών.',
+    'p6.title': 'Έργο Διαφάνειας Κόστους Εφοδιαστικής Αλυσίδας',
+    'p6.tag': 'Γερμανικός OEM Αυτοκινητοβιομηχανίας',
+    'p6.b1': 'Εισαγωγή λογικής αναφοράς και τοπίου KPI για αύξηση διαφάνειας κόστους μεταξύ τοποθεσιών.',
+    'p6.b2': 'Βελτιστοποίηση διαδικασιών για σημαντική μείωση κόστους ειδικών μεταφορών.',
+    'p7.title': 'Υποστήριξη Διοίκησης Pre- &amp; Post-Acquisition',
+    'p7.tag': 'Βρετανικός / Γαλλικός OEM Αυτοκινητοβιομηχανίας',
+    'p7.b1': 'Έλεγχος εταιρικών εγγράφων για "red flags" και προετοιμασία management summaries για διαπραγματεύσεις με υπουργεία.',
+    'p7.b2': 'Αξιολόγηση κινδύνων εργατικού δυναμικού και μοντέλα παροχής κινήτρων για διασφάλιση στρατηγικής τεχνογνωσίας.',
+    'p8.title': 'Έργα Cost-Down &amp; Μελέτες Σκοπιμότητας',
+    'p8.tag': 'Βρετανικός OEM Αυτοκινητοβιομηχανίας',
+    'p8.b1': 'Ανάλυση πραγματικών κοστών και ορισμός στόχων εξοικονόμησης για νεοαποκτηθείσες παραγωγικές μονάδες.',
+    'p8.b2': 'Ανάλυση τεχνικής σκοπιμότητας και δομών κόστους για νέα έργα οχημάτων υπό διεθνείς κανονισμούς.',
+    'cta2.text': 'Έτοιμοι για το επόμενο σας έργο μετασχηματισμού;',
+    'cta2.btn': 'Επικοινωνήστε Τώρα',
+    'contact.overline': 'Επικοινωνία',
+    'contact.title': 'Αίτημα Συνεργασίας',
+    'contact.desc': 'Ενδιαφέρεστε για συνεργασία; Περιμένω το μήνυμά σας – απλά και άμεσα.',
+    'contact.link': 'Δείτε το προφίλ LinkedIn',
+    'footer.location': 'Βιέννη, Αυστρία'
+  }
+};
+
+function setLang(lang){
+  if(!T[lang]) return;
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if(T[lang][key] !== undefined) el.innerHTML = T[lang][key];
+  });
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+  // Reset any open project bodies (heights change after content swap)
+  document.querySelectorAll('.project-row.open').forEach(row => {
+    const body = row.querySelector('.project-body');
+    body.style.maxHeight = body.scrollHeight + 'px';
+  });
+  try { localStorage.setItem('lang', lang); } catch(e){}
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => setLang(btn.dataset.lang));
+});
+
+// Initial language: localStorage > browser > de
+(function(){
+  let lang = 'de';
+  try {
+    const saved = localStorage.getItem('lang');
+    if(saved && T[saved]) lang = saved;
+    else {
+      const browser = (navigator.language || 'de').slice(0,2).toLowerCase();
+      if(T[browser]) lang = browser;
+    }
+  } catch(e){}
+  setLang(lang);
+})();
+
 // Scroll progress
 const bar = document.getElementById('progress-bar');
 window.addEventListener('scroll', () => {
@@ -927,7 +1214,6 @@ mobMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
 }));
 
 // Active nav
-const sections = document.querySelectorAll('section[id], div[id].cta-strip');
 const navLinks = document.querySelectorAll('.nav-links a');
 const sectionObserver = new IntersectionObserver(entries => {
   entries.forEach(e => {
@@ -968,7 +1254,6 @@ document.querySelectorAll('.project-row').forEach(row => {
   row.addEventListener('click', activate);
   row.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); } });
 });
-
 </script>
 </body>
 </html>
