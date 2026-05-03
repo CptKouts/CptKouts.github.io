@@ -458,8 +458,8 @@ blockquote{
 /* ── CONTACT ── */
 #contact{background:var(--bg);}
 .contact-grid{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:6rem;align-items:start;
+  display:block;
+  max-width:560px;
 }
 .contact-left h2{margin-bottom:1rem;}
 .contact-left p{
@@ -602,17 +602,13 @@ footer p{
     <span class="marquee-item">PMO &amp; Governance</span><span class="marquee-item marquee-dot">·</span>
     <span class="marquee-item">Automotive</span><span class="marquee-item marquee-dot">·</span>
     <span class="marquee-item">Transformation</span><span class="marquee-item marquee-dot">·</span>
-    <span class="marquee-item">VDA 6.3 Auditor</span><span class="marquee-item marquee-dot">·</span>
-    <span class="marquee-item">Krisenmanagement</span><span class="marquee-item marquee-dot">·</span>
-    <span class="marquee-item">Intralogistik</span><span class="marquee-item marquee-dot">·</span>
+    <span class="marquee-item">VDA 6.3</span><span class="marquee-item marquee-dot">·</span>
     <span class="marquee-item">Operational Excellence</span><span class="marquee-item marquee-dot">·</span>
     <span class="marquee-item">Supply Chain Management</span><span class="marquee-item marquee-dot">·</span>
     <span class="marquee-item">PMO &amp; Governance</span><span class="marquee-item marquee-dot">·</span>
     <span class="marquee-item">Automotive</span><span class="marquee-item marquee-dot">·</span>
     <span class="marquee-item">Transformation</span><span class="marquee-item marquee-dot">·</span>
-    <span class="marquee-item">VDA 6.3 Auditor</span><span class="marquee-item marquee-dot">·</span>
-    <span class="marquee-item">Krisenmanagement</span><span class="marquee-item marquee-dot">·</span>
-    <span class="marquee-item">Intralogistik</span><span class="marquee-item marquee-dot">·</span>
+    <span class="marquee-item">VDA 6.3</span><span class="marquee-item marquee-dot">·</span>
   </div>
 </div>
 
@@ -647,7 +643,7 @@ footer p{
       <div class="meta-block">
         <h4>Zertifizierungen</h4>
         <ul>
-          <li>VDA 6.3 Auditor</li>
+          <li>VDA 6.3</li>
           <li>Scrum Master</li>
         </ul>
       </div>
@@ -665,7 +661,7 @@ footer p{
 <!-- CTA STRIP 1 -->
 <div class="cta-strip">
   <div class="cta-strip-inner">
-    <p>Auf der Suche nach einem erfahrenen Interim Manager für Ihr nächstes Projekt?</p>
+    <p>Zu viele offene Baustellen, zu wenig Struktur – und der Druck wächst?</p>
     <a href="#contact" class="btn btn-light">Gespräch vereinbaren</a>
   </div>
 </div>
@@ -886,20 +882,6 @@ footer p{
           LinkedIn-Profil aufrufen
         </a>
       </div>
-      <div class="contact-right reveal reveal-delay-1">
-        <div class="stat-item">
-          <div class="stat-num" data-target="8">0</div>
-          <div class="stat-label">Referenzprojekte</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num" data-target="2">0</div>
-          <div class="stat-label">Zertifizierungen</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num" data-target="2">0</div>
-          <div class="stat-label">Sprachen</div>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -977,24 +959,6 @@ document.querySelectorAll('.project-row').forEach(row => {
   row.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); } });
 });
 
-// Stat counter
-const statNums = document.querySelectorAll('.stat-num[data-target]');
-const countObs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (!e.isIntersecting) return;
-    const el = e.target;
-    const target = parseInt(el.dataset.target);
-    let start = 0;
-    const step = () => {
-      start++;
-      el.textContent = start;
-      if (start < target) setTimeout(step, 120);
-    };
-    setTimeout(step, 300);
-    countObs.unobserve(el);
-  });
-}, { threshold: 0.5 });
-statNums.forEach(n => countObs.observe(n));
 </script>
 </body>
 </html>
