@@ -230,22 +230,22 @@ h1.hero-name{
 
 .hero-photo-wrap{
   position:absolute;
-  right:0;top:0;bottom:0;
-  width:58%;
+  right:3%;
+  top:50%;
+  transform:translateY(-50%);
+  width:32%;
   z-index:1;
-  overflow:hidden;
-  -webkit-mask-image:linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 28%, black 55%);
-  mask-image:linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 28%, black 55%);
+  -webkit-mask-image:linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 20%, black 45%);
+  mask-image:linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 20%, black 45%);
   pointer-events:none;
 }
 .hero-photo{ display:none; }
 #hero-canvas{
-  position:absolute;
-  right:0;top:0;
-  height:100%;
-  width:auto;
+  width:100%;
+  height:auto;
   display:block;
   opacity:0.92;
+  image-rendering:auto;
 }
 .hero-photo-caption{
   display:none;
